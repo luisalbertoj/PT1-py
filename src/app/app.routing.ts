@@ -52,6 +52,10 @@ export const AppRoutes: Routes = [
     {
         path: 'sub-categorias',
         loadChildren: './modules/subcategoria/subcategoria.module#SubcategoriaModule'
+    },
+    {
+        path: 'horarios',
+        loadChildren: './modules/horarios/horarios.module#HorariosModule'
     }
   ]}, {
       path: '',

@@ -47,6 +47,15 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'registro-sub-categoria', title: 'Registro', ab:'RSC'}
         ]
     },{
+        path: '/horarios',
+        title: 'Horarios',
+        type: 'sub',
+        icontype: 'date_range',
+        collapse: 'horarios',
+        children: [
+            {path: 'agenda', title: 'Agenda', ab:'A'}
+        ]
+    },{
         path: '/components',
         title: 'Components',
         type: 'sub',
