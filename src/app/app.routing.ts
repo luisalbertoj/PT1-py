@@ -44,6 +44,14 @@ export const AppRoutes: Routes = [
     }, {
         path: '',
         loadChildren: './timeline/timeline.module#TimelineModule'
+    },
+    {
+        path: 'categorias',
+        loadChildren: './modules/categorias/categorias.module#CategoriasModule'
+    },
+    {
+        path: 'sub-categorias',
+        loadChildren: './modules/subcategoria/subcategoria.module#SubcategoriaModule'
     }
   ]}, {
       path: '',

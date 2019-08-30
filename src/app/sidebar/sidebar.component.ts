@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 declare const $: any;
 
@@ -27,6 +28,24 @@ export const ROUTES: RouteInfo[] = [{
         title: 'Dashboard',
         type: 'link',
         icontype: 'dashboard'
+    },{
+        path: '/categorias',
+        title: 'Categorias',
+        type: 'sub',
+        icontype: 'description',
+        collapse: 'categoria',
+        children: [
+            {path: 'registro-categorias', title: 'Registro', ab:'RC'}
+        ]
+    },{
+        path: '/sub-categorias',
+        title: 'Sub Categorias',
+        type: 'sub',
+        icontype: 'dns',
+        collapse: 'sub-categoria',
+        children: [
+            {path: 'registro-sub-categoria', title: 'Registro', ab:'RSC'}
+        ]
     },{
         path: '/components',
         title: 'Components',
@@ -117,7 +136,7 @@ export const ROUTES: RouteInfo[] = [{
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
     ps: any;
-    constructor (private router: Router) {}
+    constructor (private router: Router, public userService: UserService) {}
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
