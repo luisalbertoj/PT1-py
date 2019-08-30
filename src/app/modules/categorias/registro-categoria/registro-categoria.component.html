@@ -1,46 +1,52 @@
-<div class="container">
-    <div class="row">
-        <div  id="form" class="col-sm-7">
-                <form>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Descripcion Categoria</label>
-                          <input type="text" [(ngModel)]="descripcion" name="descripcion" class="form-control" id="descripcion" aria-describedby="descripcion" placeholder="Descripcion de la categoria">
-                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
-                      </form>
+<div class="main-container">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div id="form" class="col-sm-12">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Descripcion Categoria</label>
+              <input type="text" [(ngModel)]="descripcion" name="descripcion" class="form-control" id="descripcion"
+                aria-describedby="descripcion" placeholder="Descripcion de la categoria">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
+          </form>
         </div>
-        <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" *ngFor="let item of this.categorias" href="#">{{item.descripcion}}</a>
-                </div>
-              </div>
-              <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of this.categorias">
-                        <th scope="row">{{item.idCategoria}}</th>
-                        <td>{{item.descripcion}}</td>
-                        <td>{{item.descripcion}}</td>
-                        <td>{{item.descripcion}}</td>
-                      </tr>
-                      
-                    </tbody>
-                  </table>
-                  
-            
-        <div >
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" *ngFor="let item of this.categorias" href="#">{{item.descripcion}}</a>
+            </div>
+          </div>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.categorias">
+                <th scope="row">{{item.idCategoria}}</th>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.descripcion}}</td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
 
+  </div>
 </div>
