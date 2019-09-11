@@ -37,6 +37,16 @@ export const ROUTES: RouteInfo[] = [{
         children: [
             {path: 'registro-categorias', title: 'Registro', ab:'RC'}
         ]
+    },
+    {
+        path: '/fichas',
+        title: 'Fichas',
+        type: 'sub',
+        icontype: 'reorder',
+        collapse: 'fichas',
+        children: [
+            {path: 'tabla', title: 'Tabla', ab:'T'}
+        ]
     },{
         path: '/sub-categorias',
         title: 'Sub Categorias',

@@ -12,14 +12,7 @@ export class RegistroCategoriaComponent  {
   public descripcion=" ";
   public categorias = [];
   constructor(private _categoriaService: CategoriaService) {
-    this._categoriaService.get().subscribe(
-      (response: any) => {
-        this.categorias = response.lista;
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+    this.cargarCategorias();
   }
   guardar() {
     console.log(`descripcion: ${this.descripcion}`);
@@ -35,6 +28,16 @@ export class RegistroCategoriaComponent  {
           'success'
         );
         this.descripcion = '';
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+  cargarCategorias() {
+    this._categoriaService.get().subscribe(
+      (response: any) => {
+        this.categorias = response.lista;
       },
       (error: any) => {
         console.log(error);
