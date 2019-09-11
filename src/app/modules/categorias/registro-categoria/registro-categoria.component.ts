@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
-import { CategoriaService } from '../../../services/categoria.service';
 import swal from 'sweetalert2';
+import { FactoryService } from 'src/app/services/factory.service';
 
 @Component({
   selector: 'app-registro-categoria',
@@ -11,12 +11,12 @@ import swal from 'sweetalert2';
 export class RegistroCategoriaComponent  {
   public descripcion=" ";
   public categorias = [];
-  constructor(private _categoriaService: CategoriaService) {
+  constructor(private _factory: FactoryService) {
     this.cargar();
     
   }
   cargar(){
-    this._categoriaService.get().subscribe(
+    this._factory.get('categoria').subscribe(
       (response: any) => {
         this.categorias = response.lista;
       },
@@ -32,7 +32,7 @@ export class RegistroCategoriaComponent  {
       descripcion: this.descripcion
     };
     console.log(datos);
-    this._categoriaService.create(datos).subscribe(
+    this._factory.create('categoria',datos).subscribe(
       (response: any) => {
         swal(
           'Ok!',
@@ -49,7 +49,7 @@ export class RegistroCategoriaComponent  {
 
   }
   eliminar(id){
-    this._categoriaService.delete(id).subscribe(
+    this._factory.delete('categoria',id).subscribe(
       (response: any) => {
         swal(
           'Ok!',
