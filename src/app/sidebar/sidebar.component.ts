@@ -66,6 +66,16 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'agenda', title: 'Agenda', ab:'A'}
         ]
     },{
+        path: '/horario-excepcion',
+        title: 'Excepciones de Horario',
+        type: 'sub',
+        icontype: 'shop',
+        collapse: 'horarioExcepcion',
+        children: [
+            {path: 'horarioExcepcion', title: 'Horario excepcion', ab:'HE'}
+        ]
+    }
+    ,{
         path: '/components',
         title: 'Components',
         type: 'sub',
