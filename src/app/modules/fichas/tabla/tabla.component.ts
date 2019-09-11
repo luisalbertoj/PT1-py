@@ -22,4 +22,25 @@ export class TablaComponent implements OnInit {
       }
     );
   }
+  crear(data: any) {
+    this._factory.create('fichaClinica', data).subscribe(
+      (response:any) => {
+        console.log(response);
+      }
+    );
+  }
+  actualizar(data: any) {
+    this._factory.update('fichaClinica', data).subscribe(
+      (response:any) => {
+        console.log(response);
+      }
+    );
+  }
+  borrar(id: any) {
+    this._factory.delete('fichaClinica', id).subscribe(
+      (response:any) => {
+        console.log(response);
+      }
+    );
+  }
 }
