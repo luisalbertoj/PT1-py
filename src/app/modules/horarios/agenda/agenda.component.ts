@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { CitasService } from 'src/app/services/citas.service';
 
 declare const $: any;
 
@@ -12,12 +11,9 @@ declare const $: any;
 })
 export class AgendaComponent implements OnInit {
 
-  constructor(private _citasService: CitasService) { }
+  constructor() { }
 
   ngOnInit() {
-    this._citasService.get().subscribe(
-      response => console.log(response)
-    );
     let data = {
       "dia": 2,
       "horaAperturaCadena": "0900",
@@ -27,9 +23,7 @@ export class AgendaComponent implements OnInit {
         "idPersona": 3
       }
     };
-    this._citasService.create(data).subscribe(
-      response => console.log(response)
-    )
+
     const $calendar = $('#fullCalendar');
 
     const today = new Date();
