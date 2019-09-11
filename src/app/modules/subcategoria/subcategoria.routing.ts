@@ -7,10 +7,9 @@ export const SubCategoriaRoutes: Routes = [
 
     {
         path: '',
-        children: [ { 
+        children: [ {
             path: 'registro-sub-categoria',
             component: RegistroSubCategoriaComponent
-          
         }]
     }
 ];

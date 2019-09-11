@@ -47,6 +47,15 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'registro-sub-categoria', title: 'Registro', ab:'RSC'}
         ]
     },{
+        path: '/servicios',
+        title: 'Servicios',
+        type: 'sub',
+        icontype: 'dns',
+        collapse: 'servicios',
+        children: [
+            {path: 'registro-servicios', title: 'Nuevo Registro', ab:'RSC'}
+        ]
+    },{
         path: '/horarios',
         title: 'Horarios',
         type: 'sub',
