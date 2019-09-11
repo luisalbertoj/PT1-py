@@ -4,10 +4,11 @@ import { RegistroCategoriaComponent } from './registro-categoria/registro-catego
 import { CategoriaRoutes } from './categorias.routing';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminCategoriaComponent } from './admin-categoria/admin-categoria.component';
 
 
 @NgModule({
-  declarations: [RegistroCategoriaComponent],
+  declarations: [RegistroCategoriaComponent, AdminCategoriaComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(CategoriaRoutes),
