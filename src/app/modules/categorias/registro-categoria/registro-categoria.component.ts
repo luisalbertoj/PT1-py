@@ -12,8 +12,20 @@ export class RegistroCategoriaComponent  {
   public descripcion=" ";
   public categorias = [];
   constructor(private _categoriaService: CategoriaService) {
-    this.cargarCategorias();
+    this.cargar();
+    
   }
+  cargar(){
+    this._categoriaService.get().subscribe(
+      (response: any) => {
+        this.categorias = response.lista;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
   guardar() {
     console.log(`descripcion: ${this.descripcion}`);
     let datos = {
@@ -27,17 +39,24 @@ export class RegistroCategoriaComponent  {
           'Peticion exitosa',
           'success'
         );
+        this.cargar();
         this.descripcion = '';
       },
       (error: any) => {
         console.log(error);
       }
     );
+
   }
-  cargarCategorias() {
-    this._categoriaService.get().subscribe(
+  eliminar(id){
+    this._categoriaService.delete(id).subscribe(
       (response: any) => {
-        this.categorias = response.lista;
+        swal(
+          'Ok!',
+          'Eliminación exitosa',
+          'success'
+        );
+        this.cargar();
       },
       (error: any) => {
         console.log(error);

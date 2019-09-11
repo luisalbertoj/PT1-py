@@ -28,18 +28,20 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">id</th>
+                <th scope="col">descripción</th>
+                <th scope="col">acciones</th>
+        
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of this.categorias">
                 <th scope="row">{{item.idCategoria}}</th>
                 <td>{{item.descripcion}}</td>
-                <td>{{item.descripcion}}</td>
-                <td>{{item.descripcion}}</td>
+                <td>
+                  <button mat-raised-button class="btn btn-danger" (click)="this.eliminar(item.idCategoria)">Eliminar</button>
+                </td>
+               
               </tr>
 
             </tbody>
@@ -49,4 +51,6 @@
     </div>
 
   </div>
+  <app-admin-categoria></app-admin-categoria>
+
 </div>
