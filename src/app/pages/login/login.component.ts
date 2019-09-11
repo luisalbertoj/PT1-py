@@ -71,9 +71,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(`user: ${this.user.username}`);
         this._userService.login().subscribe(
             (response: any) => {
-                console.log(JSON.parse(response._body).lista);
-                for (let index = 0; index < JSON.parse(response._body).lista.length; index++) {
-                    const _user = JSON.parse(response._body).lista[index];
+                console.log(response.lista);
+                for (let index = 0; index < response.lista.length; index++) {
+                    const _user = response.lista[index];
                     if (_user.usuarioLogin === this.user.username) {
                         localStorage.setItem('user', JSON.stringify(_user));
                         this.router.navigate(['dashboard']);

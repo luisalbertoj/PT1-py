@@ -14,7 +14,7 @@ export class RegistroCategoriaComponent  {
   constructor(private _categoriaService: CategoriaService) {
     this._categoriaService.get().subscribe(
       (response: any) => {
-        this.categorias = JSON.parse(response._body).lista;
+        this.categorias = response.lista;
       },
       (error: any) => {
         console.log(error);
