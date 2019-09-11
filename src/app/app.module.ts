@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,7 @@ import { MaterialModule } from './material.module';
 
 @NgModule({
     imports:      [
+        HttpClientModule,
         CommonModule,
         BrowserAnimationsModule,
         FormsModule,
@@ -33,7 +34,6 @@ import { MaterialModule } from './material.module';
         RouterModule.forRoot(AppRoutes,{
           useHash: true
         }),
-        HttpModule,
         SidebarModule,
         NavbarModule,
         FooterModule,

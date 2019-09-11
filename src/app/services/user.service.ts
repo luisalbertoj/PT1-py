@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-import { Http } from '@angular/http';
+import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   public User: any;
-  constructor(private _http:Http,private router: Router) { 
+  constructor(private _http:HttpClient,private router: Router) { 
     this.loadUser();
   }
   loadUser() {
@@ -21,6 +22,6 @@ export class UserService {
     }
   }
   login() {
-    return this._http.get('https://gy7228.myfoscam.org:8443/stock-pwfe/persona');
+    return this._http.get(environment.urlApi+'stock-pwfe/persona');
   }
 }
