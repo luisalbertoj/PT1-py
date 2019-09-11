@@ -37,6 +37,16 @@ export const ROUTES: RouteInfo[] = [{
         children: [
             {path: 'registro-categorias', title: 'Registro', ab:'RC'}
         ]
+    },
+    {
+        path: '/fichas',
+        title: 'Fichas',
+        type: 'sub',
+        icontype: 'reorder',
+        collapse: 'fichas',
+        children: [
+            {path: 'tabla', title: 'Tabla', ab:'T'}
+        ]
     },{
         path: '/sub-categorias',
         title: 'Sub Categorias',
@@ -65,6 +75,16 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'agenda', title: 'Agenda', ab:'A'}
         ]
     },{
+        path: '/horario-excepcion',
+        title: 'Excepciones de Horario',
+        type: 'sub',
+        icontype: 'shop',
+        collapse: 'horarioExcepcion',
+        children: [
+            {path: 'horarioExcepcion', title: 'Horario excepcion', ab:'HE'}
+        ]
+    }
+    ,{
         path: '/components',
         title: 'Components',
         type: 'sub',

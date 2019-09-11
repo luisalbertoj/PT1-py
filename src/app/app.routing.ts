@@ -60,6 +60,14 @@ export const AppRoutes: Routes = [
     {
         path: 'horarios',
         loadChildren: './modules/horarios/horarios.module#HorariosModule'
+    },
+    {
+        path: 'fichas',
+        loadChildren: './modules/fichas/fichas.module#FichasModule'
+    },
+    {
+        path: 'horario-excepcion',
+        loadChildren: './modules/horario-excepcion/horario-excepcion.module#HorarioExcepcionModule'
     }
   ]}, {
       path: '',
