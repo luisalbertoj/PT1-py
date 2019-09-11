@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
 import swal from 'sweetalert2';
 import { FactoryService } from 'src/app/services/factory.service';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-registro-categoria',
@@ -60,6 +62,24 @@ export class RegistroCategoriaComponent  {
       },
       (error: any) => {
         console.log(error);
+      }
+    );
+  }
+  actualizar(id) {
+    console.log($('#'+id).val() );
+    let data= {
+      idCategoria: id,
+      descripcion:$('#'+id).val() 
+    };
+    console.log(data);
+    this._factory.update('categoria', data).subscribe(
+      (response:any) => {
+        swal(
+          'Ok!',
+          'Actualizacion exitosa',
+          'success'
+        );
+        console.log(response);
       }
     );
   }

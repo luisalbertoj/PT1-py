@@ -37,9 +37,17 @@
             <tbody>
               <tr *ngFor="let item of this.categorias">
                 <th scope="row">{{item.idCategoria}}</th>
-                <td>{{item.descripcion}}</td>
+                <td>
+                    <div class="col-sm-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" placeholder="descripcion" value="{{item.descripcion}}" id="{{item.idCategoria}}" >
+                        </mat-form-field>
+                      </div>
+                  
+                </td>
                 <td>
                   <button mat-raised-button class="btn btn-danger" (click)="this.eliminar(item.idCategoria)">Eliminar</button>
+                  <button mat-raised-button class="btn btn-info" (click)="this.actualizar(item.idCategoria)">Actualizar</button>
                 </td>
                
               </tr>
