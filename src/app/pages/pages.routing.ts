@@ -21,6 +21,9 @@ export const PagesRoutes: Routes = [
         }, {
             path: 'pricing',
             component: PricingComponent
+        },{
+            path: '',
+            component: LoginComponent
         }]
     }
 ];

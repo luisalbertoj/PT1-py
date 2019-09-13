@@ -13,14 +13,21 @@ import * as $ from 'jquery';
 export class RegistroCategoriaComponent  {
   public descripcion=" ";
   public categorias = [];
+  public categoriastamanio = [];
+  public paginacion = 1;
   constructor(private _factory: FactoryService) {
-    this.cargar();
+    this.cargar(1);
     
   }
-  cargar(){
-    this._factory.get('categoria').subscribe(
+  cargar(pagina: number){
+    this.paginacion = pagina;
+    this._factory.get('categoria', 'idCategoria', 'asc', this.paginacion, 10).subscribe(
       (response: any) => {
+        console.log(response);
         this.categorias = response.lista;
+        for (let index = 1; index < Math.trunc(response.totalDatos/10)+1; index++) {
+          this.categoriastamanio[index] = index*10;
+        }
       },
       (error: any) => {
         console.log(error);
@@ -41,7 +48,7 @@ export class RegistroCategoriaComponent  {
           'Peticion exitosa',
           'success'
         );
-        this.cargar();
+        this.cargar(this.paginacion);
         this.descripcion = '';
       },
       (error: any) => {
@@ -58,7 +65,7 @@ export class RegistroCategoriaComponent  {
           'Eliminación exitosa',
           'success'
         );
-        this.cargar();
+        this.cargar(this.paginacion);
       },
       (error: any) => {
         console.log(error);
