@@ -5,6 +5,7 @@ import { CategoriaRoutes } from './categorias.routing';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminCategoriaComponent } from './admin-categoria/admin-categoria.component';
+import { MaterialModule } from 'src/app/material.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AdminCategoriaComponent } from './admin-categoria/admin-categoria.compo
     CommonModule,
     RouterModule.forChild(CategoriaRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class CategoriasModule { }
