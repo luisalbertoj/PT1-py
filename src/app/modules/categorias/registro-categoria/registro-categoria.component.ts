@@ -25,7 +25,7 @@ export class RegistroCategoriaComponent  {
       (response: any) => {
         console.log(response);
         this.categorias = response.lista;
-        for (let index = 1; index < Math.trunc(response.totalDatos/10)+1; index++) {
+        for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
           this.categoriastamanio[index] = index*10;
         }
       },

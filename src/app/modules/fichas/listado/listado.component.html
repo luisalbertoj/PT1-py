@@ -1,0 +1,131 @@
+<div id="main-container" class="main-container">
+  <div class="container-flex">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Filtros de busqueda <i class="far fa-address-book"></i></h4>
+          </div>
+        </div>
+        <div class="card-body ">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="fechaDesde" placeholder="Fecha desde" (click)="fechaDesde.open()">
+                  <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaDesde></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="fechaHasta" placeholder="Fecha hasta" (click)="fechaHasta.open()">
+                  <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaHasta></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text" placeholder="Empleado">
+                </mat-form-field>
+
+
+              </div>
+              <div class="col-sm-2">
+                <button mat-raised-button class="btn btn-info">Buscar</button>
+              </div>
+              <div class="col-sm-4">
+
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text" placeholder="Cliente">
+                </mat-form-field>
+
+
+              </div>
+              <div class="col-sm-2">
+                <button mat-raised-button class="btn btn-info">Buscar</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+
+                <div class="dropdown">
+                  <button href="#" class="btn dropdown-toggle btn-block btn-primary" data-toggle="dropdown"
+                    aria-expanded="true">
+                    Categoria
+                    <b class="caret"></b>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="dropdown">
+                  <button href="#" class="btn dropdown-toggle btn-block btn-danger" data-toggle="dropdown"
+                    aria-expanded="true">
+                    Subcategoria
+                    <b class="caret"></b>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h2>Servicios creados apartir de esta ficha</h2>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Fecha</th>
+                        <th>Presupuesto</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">sss</td>
+                        <td class="text-right">&euro; 123</td>
+                        <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" class="btn btn-info">
+                            <i class="material-icons">person</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success ">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

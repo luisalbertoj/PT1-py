@@ -11,8 +11,12 @@ export class FactoryService {
   create(model: string, data: any) {
     return this._http.post(environment.urlApi + 'stock-pwfe/' + model, data, { headers: environment.httpHeaders });
   }
-  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number) {
-    if (model && orderBy && orderDir && base && tope) {
+  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: object) {
+    if (model && orderBy && orderDir && base && tope && query) {
+      return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
+      '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope+'&ejemplo='+JSON.stringify(query));
+    }
+    else if (model && orderBy && orderDir && base && tope) {
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
       '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope);
     }
