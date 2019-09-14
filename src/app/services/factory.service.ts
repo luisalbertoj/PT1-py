@@ -13,8 +13,10 @@ export class FactoryService {
   }
   get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: object) {
     if (model && orderBy && orderDir && base && tope && query) {
+      const querys = JSON.stringify(query).toString();
+      const queryb = ('"'+querys+'"');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
-      '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope+'&ejemplo='+JSON.stringify(query));
+      '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope+'&ejemplo='+queryb);
     }
     else if (model && orderBy && orderDir && base && tope) {
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +

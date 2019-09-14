@@ -17,7 +17,11 @@ export class RegistroCategoriaComponent  {
   public paginacion = 1;
   constructor(private _factory: FactoryService) {
     this.cargar(1);
-    
+    this._factory.get('categoria', 'idCategoria', 'asc', this.paginacion, 10, {'idCategoria':'188'}).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
   cargar(pagina: number){
     this.paginacion = pagina;
