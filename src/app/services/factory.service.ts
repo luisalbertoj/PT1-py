@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { encode } from 'punycode';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,11 @@ export class FactoryService {
   create(model: string, data: any) {
     return this._http.post(environment.urlApi + 'stock-pwfe/' + model, data, { headers: environment.httpHeaders });
   }
-  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: object) {
+  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: any) {
     if (model && orderBy && orderDir && base && tope && query) {
-      const querys = JSON.stringify(query).toString();
-      const queryb = ('"'+querys+'"');
+      console.log('ejecutando query');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
-      '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope+'&ejemplo='+queryb);
+      '?ejemplo='+encodeURI(query));
     }
     else if (model && orderBy && orderDir && base && tope) {
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +

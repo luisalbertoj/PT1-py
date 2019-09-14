@@ -15,8 +15,9 @@ export class ListadoComponent implements OnInit {
     empleado: '',
     cliente: ''
   };
-  public descripcion = "";
+  public fichas = [];
   public paginacion = 1;
+  public tamanio = [];
   constructor(private _factory: FactoryService) { }
   ngOnInit() {
     this.cargar();
@@ -25,6 +26,10 @@ export class ListadoComponent implements OnInit {
     this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10).subscribe(
       (response: any) => {
         console.log(response);
+        this.fichas =  response.lista;
+        for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
+          this.tamanio[index] = index*10;
+        }
       },
       (error: any) => {
         console.log(error);
@@ -37,6 +42,10 @@ export class ListadoComponent implements OnInit {
     this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10, this.filtro).subscribe(
       (response: any) => {
         console.log(response);
+        this.fichas =  response.lista;
+        for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
+          this.tamanio[index] = index*10;
+        }
       },
       (error: any) => {
         console.log(error);
