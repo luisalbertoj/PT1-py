@@ -20,6 +20,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 import { CategoriasModule } from './modules/categorias/categorias.module';
 import { SubcategoriaModule } from './modules/subcategoria/subcategoria.module';
+import { ServiciosModule } from './modules/servicios/servicios.module';
 import { MaterialModule } from './material.module';
 
 
@@ -39,7 +40,8 @@ import { MaterialModule } from './material.module';
         FooterModule,
         FixedpluginModule,
         CategoriasModule,
-        SubcategoriaModule
+        SubcategoriaModule,
+        ServiciosModule
     ],
     declarations: [
         AppComponent,
