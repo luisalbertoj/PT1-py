@@ -1,0 +1,75 @@
+<br>
+<br>
+
+<div class="col-md-8">
+  <div class="card ">
+    <div class="card-header card-header-rose card-header-text">
+      <div class="card-text">
+        <h4 class="card-title">Registrar excepcion</h4>
+      </div>
+    </div>
+    <div class="card-body ">
+      <form method="get" action="/" class="form-horizontal">
+        <div class="row">
+          <label class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-10">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Nombre">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-2 col-form-label">Horario de inicio</label>
+          <div class="col-sm-10">
+            <mat-form-field class="example-full-width">
+              <input [(ngModel)]="horarioExcepcion.horaAperturaCadena" name="horaAperturaCadena" matInput placeholder="Formato hhmm">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-2 col-form-label">Horario de finalizacion</label>
+          <div class="col-sm-10">
+            <mat-form-field class="example-full-width">
+              <input [(ngModel)]="horarioExcepcion.horaCierreCadena" name="horaCierreCadena" matInput placeholder="Formato hhmm">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-2 col-form-label">Fecha</label>
+          <div class="col-sm-10">
+            <mat-form-field>
+              <input [(ngModel)]="horarioExcepcion.fechaCadenaF" name="fechaFiltro" matInput [matDatepicker]="picker" placeholder="Eliga una fecha" (click)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-2 col-form-label"></label>
+          <div class="form-check col-sm-10">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="exampleRadios" value="option1" checked> Atendera
+              <span class="circle">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-2 col-form-label"></label>
+          <div class="form-check col-sm-10">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="exampleRadios" value="option2"> No atendera
+              <span class="circle">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="card-footer ">
+            <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
