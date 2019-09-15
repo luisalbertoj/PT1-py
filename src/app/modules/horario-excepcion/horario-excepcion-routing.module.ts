@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HorarioExcepcionComponent } from './horario-excepcion/horario-excepcion.component';
+import { ListarExcepcionComponent } from './listar-excepcion/listar-excepcion.component';
+import { CrearExcepcionComponent } from './crear-excepcion/crear-excepcion.component';
 
 const routes: Routes = [
-  {path: 'horarioExcepcion', component: HorarioExcepcionComponent}
+  {path: 'horarioExcepcion', component: ListarExcepcionComponent},
+  {path: 'crearExcepcion', component: CrearExcepcionComponent}
 ];
 
 @NgModule({
