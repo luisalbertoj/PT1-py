@@ -16,8 +16,13 @@ export class RegistroCategoriaComponent  {
   public categoriastamanio = [];
   public paginacion = 1;
   constructor(private _factory: FactoryService) {
-    this.cargar(1);
-    
+    this.cargar(this.paginacion);
+    this._factory.get('persona', 'idPersona', 'asc', 1, 10, '{"nombre":"Gustavo"}').subscribe(
+      (response: any) => {
+        console.log('elemento filtrado');
+        console.log(response);
+      }
+    );
   }
   cargar(pagina: number){
     this.paginacion = pagina;

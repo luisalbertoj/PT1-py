@@ -12,14 +12,14 @@
             <div class="row">
               <div class="col-sm-6">
                 <mat-form-field>
-                  <input matInput [matDatepicker]="fechaDesde" placeholder="Fecha desde" (click)="fechaDesde.open()">
+                  <input [(ngModel)]="filtro.fechaDesde" name="fechaDesde" matInput [matDatepicker]="fechaDesde"  placeholder="Fecha desde" (click)="fechaDesde.open()">
                   <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
                   <mat-datepicker #fechaDesde></mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="col-sm-6">
                 <mat-form-field>
-                  <input matInput [matDatepicker]="fechaHasta" placeholder="Fecha hasta" (click)="fechaHasta.open()">
+                  <input [(ngModel)]="filtro.fechaHasta" name="fechaHasta" matInput [matDatepicker]="fechaHasta" placeholder="Fecha hasta" (click)="fechaHasta.open()">
                   <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
                   <mat-datepicker #fechaHasta></mat-datepicker>
                 </mat-form-field>
@@ -30,7 +30,7 @@
               <div class="col-sm-4">
 
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text" placeholder="Empleado">
+                  <input [(ngModel)]="filtro.empleado" name="filtro.empleado" matInput type="text" placeholder="Empleado" disabled="true">
                 </mat-form-field>
 
 
@@ -41,7 +41,7 @@
               <div class="col-sm-4">
 
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text" placeholder="Cliente">
+                  <input [(ngModel)]="filtro.cliente" name="filtro.cliente"  disabled="true" matInput type="text" placeholder="Cliente">
                 </mat-form-field>
 
 
@@ -88,7 +88,15 @@
                   </ul>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
 
+              </div>
+              <div class="col-sm-4">
+                  <button mat-raised-button class="btn btn-info" (click)="consultar()">Filtrar</button>
+                  <button mat-raised-button class="btn btn-info" (click)="limpiar()">Limpiar</button>
+              </div>
             </div>
             </div>
             <div class="row">
