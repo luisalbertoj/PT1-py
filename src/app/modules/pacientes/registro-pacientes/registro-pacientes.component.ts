@@ -23,7 +23,7 @@ export class RegistroPacienteComponent  {
   }
   cargar(pagina: number){
     this.paginacion = pagina;
-    this._factory.get('persona', 'idPaciente', 'asc', this.paginacion, 10).subscribe(
+    this._factory.get('persona', 'idPersona', 'desc', this.paginacion, 10).subscribe(
       (response: any) => {
         console.log(response);
         this.pacientes = response.lista;
@@ -55,7 +55,7 @@ export class RegistroPacienteComponent  {
 
   }
   eliminar(id){
-    this._factory.delete('paciente', id).subscribe(
+    this._factory.delete('persona', id).subscribe(
       (response: any) => {
         swal(
           'Ok!',

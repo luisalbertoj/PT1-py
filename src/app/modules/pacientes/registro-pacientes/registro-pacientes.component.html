@@ -26,12 +26,14 @@
                         <input type="text" [(ngModel)]="paciente.cedula" name="cedula" class="form-control"
                           id="cedula" aria-describedby="cedula" placeholder="Cedula">
                         <input type="text" [(ngModel)]="paciente.tipoPersona" name="tipoPersona" class="form-control"
-                          id="tipoPersona" aria-describedby="tipoPersona" placeholder="Tipo de Persona" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                        <input matInput [matDatepicker]="picker" [(ngModel)]="paciente.fechaNacimiento" placeholder="Fecha" (click)="picker.open()">
-                          <mat-form-field>    
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>     
+                          id="tipoPersona" aria-describedby="tipoPersona" placeholder="Tipo de Persona" >
+                        <div class="col-sm-6">
+                              <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Fecha" (click)="picker.open()">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                          </div>    
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                           else.</small>
                       </div>
@@ -52,15 +54,15 @@
                         </thead>
                       <tbody>
                           <tr *ngFor="let item of this.pacientes">
-                              <td class="text-center">{{item.idPaciente}}</td>
+                              <td class="text-center">{{item.idPersona}}</td>
                               <td>{{item.nombre}}</td>
                               <td>{{item.apellido}}</td>
                               <td>{{item.cedula}}</td>
                               <td class="td-actions text-right">
                                 <button mat-raised-button class="btn btn-danger"
-                                  (click)="this.eliminar(item.idPaciente)">Eliminar</button>
+                                  (click)="this.eliminar(item.idPersona)">Eliminar</button>
                                 
-                                  <a [routerLink]="actualizar-pacientes/item.idPaciente">
+                                  <a [routerLink]="['/pacientes/actualizar-pacientes',item.idPersona]">
                                     <button mat-raised-button class="btn btn-info"
                                     >Actualizar</button></a>
                               </td>
