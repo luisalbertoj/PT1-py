@@ -106,26 +106,27 @@
                   <table class="table">
                     <thead>
                       <tr>
+                        <th class="text-center">Fisioterapeuta</th>
+                        <th class="text-center">Paciente</th>
                         <th class="text-center">Fecha</th>
-                        <th>Presupuesto</th>
-                        <th>Acciones</th>
+                        <th class="text-center">Observacion</th>
+                        <th class="text-center">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="text-center">sss</td>
-                        <td class="text-right">&euro; 123</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success ">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
+                      <tr *ngFor="let ficha of fichas">
+                            <td class="text-center">{{ficha.idEmpleado.nombre}}</td>
+                            <td class="text-center">{{ficha.idCliente.nombre}}</td>
+                            <td class="text-center">{{ficha.fechaHora}}</td>
+                            <td class="text-center">{{ficha.observacion}}</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" class="btn btn-success ">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-danger">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>                        
                       </tr>
                     </tbody>
                   </table>
