@@ -16,10 +16,10 @@ export class RegistroPacienteComponent  {
   public pacientes = [];
   public pacientestamanio = [];
   public paginacion = 1;
-  public paciente = new Paciente();
+  public persona = new Paciente();
   constructor(private _factory: FactoryService, private routing: Router) {
     this.cargar(1);
-    console.log (this.paciente);
+    console.log (this.persona);
   }
   cargar(pagina: number){
     this.paginacion = pagina;
@@ -39,8 +39,8 @@ export class RegistroPacienteComponent  {
 
   guardar() {
    
-    console.log("guardamdp");
-    this._factory.create('persona',this.paciente).subscribe(
+    console.log("guardamos");
+    this._factory.create('persona',this.persona).subscribe(
       (response: any) => {
         swal(
           'Ok!',
