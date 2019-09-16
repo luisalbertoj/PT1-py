@@ -84,6 +84,15 @@ export const ROUTES: RouteInfo[] = [{
         children: [
             {path: 'horarioExcepcion', title: 'Horario excepcion', ab:'HE'}
         ]
+    },{
+        path: '/pacientes',
+        title: 'Pacientes',
+        type: 'sub',
+        icontype: 'dns',
+        collapse: 'pacientes',
+        children: [
+            {path: 'registro-pacientes', title: 'Registro de pacientes', ab:'RP'}
+        ]
     }
     ,{
         path: '/components',

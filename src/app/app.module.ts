@@ -22,6 +22,7 @@ import { CategoriasModule } from './modules/categorias/categorias.module';
 import { SubcategoriaModule } from './modules/subcategoria/subcategoria.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { MaterialModule } from './material.module';
+import { PacientesModule } from './modules/pacientes/pacientes.module';
 
 
 
@@ -41,6 +42,7 @@ import { MaterialModule } from './material.module';
         FixedpluginModule,
         CategoriasModule,
         SubcategoriaModule,
+        PacientesModule,
         ServiciosModule
     ],
     declarations: [
