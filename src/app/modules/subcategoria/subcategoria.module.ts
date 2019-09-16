@@ -8,10 +8,10 @@ import { SubCategoriaRoutes } from './subcategoria.routing';
 
 import { RegistroSubCategoriaComponent } from './registro-sub-categoria/registro-sub-categoria.component';
 import { MaterialModule } from 'src/app/material.module';
-
+import { ClienteComponent } from './cliente/cliente.component';
 
 @NgModule({
-  declarations: [RegistroSubCategoriaComponent],
+  declarations: [RegistroSubCategoriaComponent, ClienteComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(SubCategoriaRoutes),
