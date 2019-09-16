@@ -1,12 +1,11 @@
 export class Servicios {
-    "codigo": "";
-    "flagServicio": "";
-    "idProducto": {
-        "idProducto": ""
+    codigo: string = "";
+    flagServicio: string = "";
+    idProducto: any = {
+        idProducto: ""
     };
-    "nombre": "";
-    "existenciaProducto": {
-        "precioVenta": ""
+    nombre:string = "";
+    existenciaProducto: any = {
+        precioVenta: ""
     };
-
 }

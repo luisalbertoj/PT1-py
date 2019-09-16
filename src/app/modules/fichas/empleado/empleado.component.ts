@@ -1,23 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import * as core from '@angular/core';
 import { FactoryService } from 'src/app/services/factory.service';
 
-@Component({
+@core.Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit {
-  @Input() titulo: string;
-  @Input() query: any;
-  @Input() tablaTitulos: [];
-  @Input() tablaElementos: [];
+export class EmpleadoComponent implements core.OnInit {
+  @core.Input() titulo: string;
+  @core.Input() query: any;
+  @core.Input() tablaTitulos: [];
+  @core.Input() tablaElementos: [];
   public clientes = [];
   public modeloMostrar = [];
   public paginacion = 1;
   public tamanoPaginacion = [];
   public busqueda: string = '';
   public like: boolean = false;
-  @Output () increment: EventEmitter <Object> = new EventEmitter (); 
+  @core.Output () increment: core.EventEmitter <Object> = new core.EventEmitter (); 
   constructor(private _factory: FactoryService) { }
 
   ngOnInit() {

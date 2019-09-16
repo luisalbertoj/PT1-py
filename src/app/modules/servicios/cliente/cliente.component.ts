@@ -46,14 +46,16 @@ export class ClienteComponent implements OnInit {
   buscar(evt) {
     console.log(evt);
     const tablaElementos = this.tablaElementos[1];
-    if(this.query.model === 'persona')
+    if(this.query.model === 'persona') {
     this.query.query = {
       'nombre' : evt.trim()
-    };
-    if(this.query.model === 'categoria')
+    }
+    }
+    if(this.query.model === 'categoria') {
     this.query.query = {
       'descripcion' : evt.trim()
     };
+    }
     this.like = true;
     if(evt.trim() === ''){
       this.query.query =  null;

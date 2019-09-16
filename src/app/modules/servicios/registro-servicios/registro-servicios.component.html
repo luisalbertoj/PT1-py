@@ -12,53 +12,99 @@
               <div class="container">
                 <div class="row">
                   <div id="form" class="col-sm-12">
+        
                     <form>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Nombre del Producto</label>
-                        <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control"
-                          id="nombre" aria-describedby="nombre" placeholder="Nombre del Producto">
+                        <input type="text" [(ngModel)]="servicio.nombre" name="nombre" class="form-control"
+                          id="nombre" aria-describedby="nombre" placeholder="Nombre del Servicio">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Descripcion Categoria</label>
-                        <input type="text" [(ngModel)]="descripcion" name="descripcion" class="form-control"
-                          id="descripcion" aria-describedby="descripcion" placeholder="Descripcion de la categoria">
+                        
+                        <input type="text" [(ngModel)]="servicio.codigo" name="descripcion" class="form-control"
+                          id="descripcion" aria-describedby="descripcion" placeholder="Codigo del Servicio">
                       </div>
+                      <div class="form-group">
+                        
+                        <input type="number" [(ngModel)]="servicio.existenciaProducto.precioVenta" name="descripcion" class="form-control"
+                          id="descripcion" aria-describedby="descripcion" placeholder="Precio">
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <mat-form-field class="example-full-width">
+                                  <input [(ngModel)]="producto.descripcion" name="Producto" matInput type="text"
+                                    placeholder="Producto" disabled="true">
+                                </mat-form-field>
+                
+                
+                              </div>
+                              <div class="col-sm-2">
+                                <button  mat-raised-button class="btn btn-info" 
+                                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
+                              </div>
+                        </div>  
+                        </div>
                       <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
                     </form>
+    
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
+                      <div class="row">
+                          <div class="col-sm-8">
+                            <mat-form-field class="example-full-width">
+                              <input [(ngModel)]="busqueda" name="busqueda" matInput type="text" (ngModelChange)="buscar($event)"
+                                placeholder="Nombre del cliente a buscar">
+                            </mat-form-field>
+                          </div>
+                      </div>
                     <table class="table">
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">codigo servicio</th>
-                          <th scope="col">descripcion del servicio</th>
+                          <th scope="col">nombre del servicio</th>
                           <th scope="col">codigo del producto</th>
                           <th scope="col">nombre del producto</th>
                           <th scope="col">precio del producto</th>
-  
-  
-  
+                          <th scope="col"></th>
+                          <th scope="col">Accioness</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of this.categorias">
                           <th scope="row">{{item.codigo}}</th>
-                          <th scope="row">{{item.flagServicio}}</th>
+                          <th scope="row">
+                              <mat-form-field class="example-full-width">
+                                  <input matInput type="text" placeholder="Nombre" value="{{item.nombre}}"
+                                    id="{{item.idPresentacionProducto + 'm'}}">
+                                </mat-form-field>
+                          </th>
                           <th scope="row">{{item.idProducto.idProducto}}</th>
                           <th scope="row">{{item.nombre}}</th>
-                          <th scope="row">{{item.existenciaProducto.precioVenta}}</th>
-              
+                          <th scope="row" >
+                            <div *ngIf="item.existenciaProducto">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="text" placeholder="Precio" value="{{item.existenciaProducto.precioVenta || 0}}"
+                                      id="{{item.idPresentacionProducto}}">
+                                  </mat-form-field>
+                            </div>
+                              <div *ngIf="!item.existenciaProducto">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput type="text" placeholder="Precio" value="0"
+                                        id="{{item.idPresentacionProducto}}">
+                                    </mat-form-field>
+                              </div>
+                          </th>
+                          
                           <td>
-                            
-  
                           </td>
                           <td>
                             <button mat-raised-button class="btn btn-danger"
-                              (click)="this.eliminar(item.codigo)">Eliminar</button>
+                              (click)="this.eliminar(item.idPresentacionProducto)">Eliminar</button>
                             <button mat-raised-button class="btn btn-info"
-                              (click)="this.actualizar(item.codigo)">Actualizar</button>
+                              (click)="this.actualizar(item.idPresentacionProducto, item)">Actualizar</button>
                           </td>
   
                         </tr>
@@ -80,3 +126,9 @@
         </div>
       </div>
     </div>
+    <app-cliente
+[titulo]="elementosLista.titulo"
+[query]="elementosLista.query"
+[tablaTitulos]="elementosLista.tablaTitulos"
+[tablaElementos]="elementosLista.tablaElementos"
+(increment)="selecion($event)"></app-cliente>
