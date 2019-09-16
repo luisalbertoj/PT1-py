@@ -12,17 +12,23 @@ export class FactoryService {
   create(model: string, data: any) {
     return this._http.post(environment.urlApi + 'stock-pwfe/' + model, data, { headers: environment.httpHeaders });
   }
-  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: any) {
-    if (model && orderBy && orderDir && base && tope && query) {
+  get(model: string, orderBy?: any,orderDir?: any, base?: number, tope?: number, query?: any, like?: boolean) {
+    if (model && orderBy && orderDir && base && tope && query && like) {
+      console.log('ejecutando like');
+      return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
+      '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope
+      +'&like=S' + '&ejemplo='+encodeURI(JSON.stringify(query)));
+    } else if (model && orderBy && orderDir && base && tope && query) {
       console.log('ejecutando query');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
-      '?ejemplo='+encodeURI(query));
-    }
-    else if (model && orderBy && orderDir && base && tope) {
+      '?ejemplo='+encodeURI(JSON.stringify(query)));
+    } else if (model && orderBy && orderDir && base && tope) {
+      console.log('ejecutando get paginado');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
       '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope);
     }
     else {
+      console.log('ejecutando get limpio');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model);
     }
   }

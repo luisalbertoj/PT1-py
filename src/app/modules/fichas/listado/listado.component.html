@@ -12,14 +12,16 @@
             <div class="row">
               <div class="col-sm-6">
                 <mat-form-field>
-                  <input [(ngModel)]="filtro.fechaDesde" name="fechaDesde" matInput [matDatepicker]="fechaDesde"  placeholder="Fecha desde" (click)="fechaDesde.open()">
+                  <input [(ngModel)]="filtro.fechaDesde" name="fechaDesde" matInput [matDatepicker]="fechaDesde"
+                    placeholder="Fecha desde" (click)="fechaDesde.open()">
                   <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
                   <mat-datepicker #fechaDesde></mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="col-sm-6">
                 <mat-form-field>
-                  <input [(ngModel)]="filtro.fechaHasta" name="fechaHasta" matInput [matDatepicker]="fechaHasta" placeholder="Fecha hasta" (click)="fechaHasta.open()">
+                  <input [(ngModel)]="filtro.fechaHasta" name="fechaHasta" matInput [matDatepicker]="fechaHasta"
+                    placeholder="Fecha hasta" (click)="fechaHasta.open()">
                   <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
                   <mat-datepicker #fechaHasta></mat-datepicker>
                 </mat-form-field>
@@ -30,24 +32,28 @@
               <div class="col-sm-4">
 
                 <mat-form-field class="example-full-width">
-                  <input [(ngModel)]="filtro.empleado" name="filtro.empleado" matInput type="text" placeholder="Empleado" disabled="true">
+                  <input [(ngModel)]="filtro.empleado" name="filtro.empleado" matInput type="text"
+                    placeholder="Empleado" disabled="true">
                 </mat-form-field>
 
 
               </div>
               <div class="col-sm-2">
-                <button mat-raised-button class="btn btn-info">Buscar</button>
+                <button (click)="buscarEmpleado()" mat-raised-button class="btn btn-info" 
+                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
               </div>
               <div class="col-sm-4">
 
                 <mat-form-field class="example-full-width">
-                  <input [(ngModel)]="filtro.cliente" name="filtro.cliente"  disabled="true" matInput type="text" placeholder="Cliente">
+                  <input [(ngModel)]="filtro.cliente" name="filtro.cliente" disabled="true" matInput type="text"
+                    placeholder="Cliente">
                 </mat-form-field>
 
 
               </div>
               <div class="col-sm-2">
-                <button mat-raised-button class="btn btn-info">Buscar</button>
+                <button (click)="buscarCliente()" mat-raised-button class="btn btn-info"
+                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
               </div>
             </div>
             <div class="row">
@@ -94,42 +100,50 @@
 
               </div>
               <div class="col-sm-4">
-                  <button mat-raised-button class="btn btn-info" (click)="consultar()">Filtrar</button>
-                  <button mat-raised-button class="btn btn-info" (click)="limpiar()">Limpiar</button>
+                <button mat-raised-button class="btn btn-info" (click)="consultar()">Filtrar</button>
+                <button mat-raised-button class="btn btn-info" (click)="limpiar()">Limpiar</button>
               </div>
             </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h2>Servicios creados apartir de esta ficha</h2>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="text-center">Fecha</th>
-                        <th>Presupuesto</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">sss</td>
-                        <td class="text-right">&euro; 123</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" class="btn btn-info">
-                            <i class="material-icons">person</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-success ">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Servicios creados apartir de esta ficha</h2>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Fisioterapeuta</th>
+                      <th class="text-center">Paciente</th>
+                      <th class="text-center">Fecha</th>
+                      <th class="text-center">Observacion</th>
+                      <th class="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ficha of fichas">
+                      <td class="text-center">{{ficha.idEmpleado.nombre}}</td>
+                      <td class="text-center">{{ficha.idCliente.nombre}}</td>
+                      <td class="text-center">{{ficha.fechaHora}}</td>
+                      <td class="text-center">{{ficha.observacion}}</td>
+                      <td class="td-actions text-right">
+                        <button type="button" rel="tooltip" class="btn btn-success ">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-danger">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <div *ngFor="let item of tamanoPaginacion">
+                        <li id="paginacion" class="page-item"><a class="page-link"
+                            (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
+                      </div>
+                    </ul>
+                  </nav>
+                </table>
               </div>
             </div>
           </div>
@@ -137,3 +151,16 @@
       </div>
     </div>
   </div>
+</div>
+<app-cliente 
+[titulo]="elementosLista.titulo"
+[query]="elementosLista.query"
+[tablaTitulos]="elementosLista.tablaTitulos"
+[tablaElementos]="elementosLista.tablaElementos"
+(increment)="selecionCliente($event)"></app-cliente>
+<app-empleado
+[titulo]="elementosLista2.titulo"
+[query]="elementosLista2.query"
+[tablaTitulos]="elementosLista2.tablaTitulos"
+[tablaElementos]="elementosLista2.tablaElementos"
+(increment)="selecionCliente($event)"></app-empleado>
