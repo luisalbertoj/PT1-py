@@ -90,9 +90,7 @@ export class ListarExcepcionComponent implements OnInit {
   limpiar() {
     this.filtro = {
       fechaDesde: '',
-      fechaHasta: '',
-      fechaDesdeCadena: '',
-      fechaHastaCadena: '',
+      fechaCadena: '',
       empleado: '',
       cliente: '',
       idCliente: '',
