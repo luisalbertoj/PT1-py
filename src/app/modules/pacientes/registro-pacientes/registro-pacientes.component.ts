@@ -17,6 +17,7 @@ export class RegistroPacienteComponent  {
   public pacientestamanio = [];
   public paginacion = 1;
   public persona = new Paciente();
+  public persona2= new Paciente();
   constructor(private _factory: FactoryService, private routing: Router) {
     this.cargar(1);
     console.log (this.persona);
@@ -26,7 +27,7 @@ export class RegistroPacienteComponent  {
   public like: boolean = false;
   cargar(pagina: number){
     this.paginacion = pagina;
-    this._factory.get('persona', 'idPersona', 'desc', this.paginacion, 10, this.query, this.like).subscribe(
+    this._factory.get('persona', 'idPersona', 'asc', this.paginacion, 10, this.query, this.like).subscribe(
       (response: any) => {
         console.log(response);
         this.pacientes = response.lista;
