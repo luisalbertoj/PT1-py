@@ -58,40 +58,35 @@
             </div>
             <div class="row">
               <div class="col-sm-6">
-
                 <div class="dropdown">
                   <button href="#" class="btn dropdown-toggle btn-block btn-primary" data-toggle="dropdown"
                     aria-expanded="true">
                     Categoria
                     <b class="caret"></b>
                   </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
+                  <ul class="dropdown-menu" style="height: 200px; overflow-y: scroll !important">
+                    <li *ngFor="let item of this.categorias">
+                      <a style="cursor: pointer" (click)="categoriaSeleccionada(item)">
+                      {{item.descripcion}}
+                    </a>
+                  </li>
                   </ul>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="dropdown">
-                  <button href="#" class="btn dropdown-toggle btn-block btn-danger" data-toggle="dropdown"
+                  <button *ngIf="!this.seleccionCategoria" href="#" class="btn dropdown-toggle btn-block btn-danger" data-toggle="dropdown"
                     aria-expanded="true">
                     Subcategoria
                     <b class="caret"></b>
                   </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
+                  <ul class="dropdown-menu" style="height: 200px; overflow-y: scroll !important">
+                      <li *ngFor="let item of this.subCategorias">
+                        <a style="cursor: pointer" (click)="subCategoriaSeleccionada(item)">
+                        {{item.nombre || 'nombre no registrado'}} / {{item.descripcion || 'descripcion no registrado'}}
+                      </a>
+                    </li>
+                    </ul>
                 </div>
               </div>
             </div>
