@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert2';
 import { FactoryService } from 'src/app/services/factory.service';
 import { UtilService } from 'src/app/services/util.service';
-import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-listado',
-  templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.css']
+  selector: 'app-lista-servicio',
+  templateUrl: './lista-servicio.component.html',
+  styleUrls: ['./lista-servicio.component.css']
 })
-export class ListadoComponent implements OnInit {
+export class ListaServicioComponent implements OnInit {
   public filtro = {
     fechaDesde: '',
     fechaHasta: '',
@@ -37,7 +37,7 @@ export class ListadoComponent implements OnInit {
   public categorias: any = [];
   public subCategorias: any = [];
   public seleccionCategoria: boolean = true;
-  public subCategoiraSeleccionada: any = '';
+  public subCategoiraSeleccionada: string  = '';
   public categoiraSeleccionada: any = {};
   constructor(private _factory: FactoryService, public _util: UtilService) { }
   ngOnInit() {
@@ -46,8 +46,9 @@ export class ListadoComponent implements OnInit {
   }
   cargar(pagina: number) {
     this.paginacion = pagina;
-    this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10).subscribe(
+    this._factory.get('servicio', 'idServicio', 'asc', this.paginacion, 10).subscribe(
       (response: any) => {
+        console.log('Lista Servicios');
         console.log(response);
         this.fichas =  response.lista;
         for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
@@ -68,7 +69,7 @@ export class ListadoComponent implements OnInit {
     );
   }
   subCategoriaSeleccionada(item: any) {
-    this.subCategoiraSeleccionada = item;
+    this.subCategoiraSeleccionada = item.idTipoProducto;
   }
   categoriaSeleccionada(item: any) {
     this.categoiraSeleccionada = item;
@@ -86,13 +87,12 @@ export class ListadoComponent implements OnInit {
     let query: any = {};
     if(this.filtro.fechaHasta !== '') query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
     if(this.filtro.fechaDesde !== '') query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
-    if(this.filtro.idCliente !== '') query.idCliente = this.filtro.idCliente;
+    if(this.filtro.idCliente !== '') query.idFichaClinica.idCliente.idPersona = this.filtro.idCliente;
     if(this.filtro.idEmpleado !== '') query.idEmpleado = this.filtro.idEmpleado;
-    console.log(this.subCategoiraSeleccionada);
-    if(this.subCategoiraSeleccionada !== '') query.idTipoProducto = {idTipoProducto: this.subCategoiraSeleccionada.idTipoProducto};
+    if(this.subCategoiraSeleccionada !== '') query.idTipoProducto = {idTipoProducto: this.subCategoiraSeleccionada};
     if(query === {}) query = null;
     console.log(query);
-    this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10, query).subscribe(
+    this._factory.get('servicio', 'idServicio', 'asc', this.paginacion, 10, query).subscribe(
       (response: any) => {
         console.log(response);
         this.fichas =  response.lista;
