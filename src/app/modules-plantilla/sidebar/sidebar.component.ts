@@ -40,7 +40,6 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'reorder',
         collapse: 'fichas',
         children: [
-            {path: 'tabla', title: 'Tabla', ab:'T'},
             {path: 'listado', title: 'Listado', ab:'L'}
         ]
     },{
@@ -77,7 +76,8 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'shop',
         collapse: 'horarioExcepcion',
         children: [
-            {path: 'horarioExcepcion', title: 'Horario excepcion', ab:'HE'}
+            {path: 'crearExcepcion', title: 'Nueva excepcion', ab:'NE'},
+            {path: 'horarioExcepcion', title: 'Lista de excepciones', ab:'HE'}
         ]
     },{
         path: '/pacientes',

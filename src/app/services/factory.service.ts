@@ -26,6 +26,10 @@ export class FactoryService {
       console.log('ejecutando get paginado');
       return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
       '?orderBy='+ orderBy +'&orderDir='+orderDir+'&inicio='+base+'&cantidad='+tope);
+    } else if(model && query) {
+      console.log('ejecutando get con query sin paginar');
+      return this._http.get(environment.urlApi + 'stock-pwfe/' + model +
+       '?ejemplo='+encodeURI(JSON.stringify(query)));
     }
     else {
       console.log('ejecutando get limpio');
