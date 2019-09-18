@@ -1,0 +1,61 @@
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalCenterTitle">{{titulo}}</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- <h2>Clientes</h2> -->
+              <div class="row">
+                  <div class="col-sm-8">
+                    <mat-form-field class="example-full-width">
+                      <input [(ngModel)]="busqueda" name="busqueda" matInput type="text" (ngModelChange)="buscar($event)"
+                        placeholder="Nombre del cliente a buscar">
+                    </mat-form-field>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr >
+                      <th class="text-center" *ngFor="let titulo of tablaTitulos">{{titulo}}</th>
+                      <th class="text-center">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of clientes; let i=index">
+                        <td class="text-center" >{{item.idEmpleado.idPersona}}</td>  
+                        <td class="text-center" >{{item.idEmpleado.nombre}}</td> 
+                        <td class="text-center" >{{item.idEmpleado.cedula}}</td>            
+                          <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-danger" (click)="asignar(item)">
+                              <i class="material-icons">check</i>
+                            </button>
+                          </td>                        
+                    </tr>
+                  </tbody>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <div *ngFor="let item of tamanoPaginacion">
+                        <li id="paginacion" class="page-item"><a class="page-link" (click)="cargar(item + 1)">{{(item/5) + 1 || 1}}</a></li>
+                      </div>
+                    </ul>
+                  </nav>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
