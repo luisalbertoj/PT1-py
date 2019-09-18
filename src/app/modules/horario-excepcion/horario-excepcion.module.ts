@@ -6,10 +6,11 @@ import { ListarExcepcionComponent } from './listar-excepcion/listar-excepcion.co
 import { CrearExcepcionComponent } from './crear-excepcion/crear-excepcion.component';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule } from '@angular/forms';
+import { EmpleadoComponent } from './empleado/empleado.component';
 
 
 @NgModule({
-  declarations: [ListarExcepcionComponent, CrearExcepcionComponent],
+  declarations: [ListarExcepcionComponent, CrearExcepcionComponent, EmpleadoComponent],
   imports: [
     CommonModule,
     HorarioExcepcionRoutingModule,

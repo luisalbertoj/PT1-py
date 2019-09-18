@@ -13,7 +13,7 @@ export class CrearExcepcionComponent implements OnInit {
     "fechaCadenaF": new Date(),
     "horaAperturaCadena":"",
     "horaCierreCadena":"",
-    "flagEsHabilitar":"S",
+    "flagEsHabilitar":"",
     "idEmpleado":{
       "idPersona":4
     } ,
@@ -32,6 +32,7 @@ export class CrearExcepcionComponent implements OnInit {
   guardar() {
     this.horarioExcepcion.fechaCadena = this.limpiarFecha(this.horarioExcepcion.fechaCadenaF);
     delete this.horarioExcepcion.fechaCadenaF;
+    console.log(this.horarioExcepcion);
     this._factory.create('horarioExcepcion',this.horarioExcepcion).subscribe(
       (response: any) => {
         swal(
@@ -52,6 +53,10 @@ export class CrearExcepcionComponent implements OnInit {
     let fechaFinal = fecha.toISOString().split('-');
     fechaFinal[2] = fechaFinal[2].split('T')[0];    
     return (fechaFinal[0]+fechaFinal[1]+fechaFinal[2]);
+  }
+  check(value) {
+    this.horarioExcepcion.flagEsHabilitar = value
+    console.log(value);
   }
 
 }
