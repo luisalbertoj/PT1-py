@@ -8,10 +8,12 @@ import { ServiciosRoutes } from './servicios.routing';
 
 import { RegistroServiciosComponent } from './registro-servicios/registro-servicios.component';
 import { MaterialModule } from 'src/app/material.module';
+import {ClienteComponent} from './cliente/cliente.component';
+
 
 
 @NgModule({
-  declarations: [RegistroServiciosComponent],
+  declarations: [RegistroServiciosComponent, ClienteComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ServiciosRoutes),

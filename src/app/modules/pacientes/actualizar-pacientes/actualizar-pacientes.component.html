@@ -1,33 +1,44 @@
- <div class="row">
-    <div id="form" class="col-sm-12">
-      <form>
-        <div class="form-group">
-          <input type="text" [(ngModel)]="persona.nombre" name="nombre" class="form-control"
-            id="nombre" aria-describedby="nombre" placeholder="Nombre">
-          <input type="text" [(ngModel)]="persona.apellido" name="apellido" class="form-control"
-            id="apellido" aria-describedby="apellido" placeholder="Apellido">
-          <input type="text" [(ngModel)]="persona.telefono" name="telefono" class="form-control"
-            id="telefono" aria-describedby="telefono" placeholder="Telefono">
-          <input type="text" [(ngModel)]="persona.email" name="email" class="form-control"
-            id="email" aria-describedby="email" placeholder="Email">
-          <input type="text" [(ngModel)]="persona.ruc" name="ruc" class="form-control"
-            id="ruc" aria-describedby="ruc" placeholder="RUC">
-          <input type="text" [(ngModel)]="persona.cedula" name="cedula" class="form-control"
-            id="cedula" aria-describedby="cedula" placeholder="Cedula">
-          <input type="text" [(ngModel)]="persona.tipoPersona" name="tipoPersona" class="form-control"
-            id="tipoPersona" aria-describedby="tipoPersona" placeholder="Tipo de Persona" >              
-            <div class="col-sm-6">
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" (click)="picker.open()">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>      
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-            else.</small>
+<div id="main-container" class="main-container">
+  <div class="container-flex">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Actualizar Paciente <i class="far fa-address-book"></i></h4>
+          </div>
         </div>
-          <button (click)="this.actualizar(idPersona)" type="submit" class="btn btn-primary">Actualizar</button>
-      </form>
+          <div id="form" class="col-sm-6">
+            <form>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="persona.nombre" name="nombre" class="form-control"
+                  id="nombre" aria-describedby="nombre" placeholder="Nombre">
+                <input type="text" [(ngModel)]="persona.apellido" name="apellido" class="form-control"
+                  id="apellido" aria-describedby="apellido" placeholder="Apellido">
+                <input type="text" [(ngModel)]="persona.telefono" name="telefono" class="form-control"
+                  id="telefono" aria-describedby="telefono" placeholder="Telefono">
+                <input type="text" [(ngModel)]="persona.email" name="email" class="form-control"
+                  id="email" aria-describedby="email" placeholder="Email">
+                <input type="text" [(ngModel)]="persona.ruc" name="ruc" class="form-control"
+                  id="ruc" aria-describedby="ruc" placeholder="RUC">
+                <input type="text" [(ngModel)]="persona.cedula" name="cedula" class="form-control"
+                  id="cedula" aria-describedby="cedula" placeholder="Cedula">
+                <input type="text" [(ngModel)]="persona.tipoPersona" name="tipoPersona" class="form-control"
+                  id="tipoPersona" aria-describedby="tipoPersona" placeholder="Tipo de Persona" >              
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <input [(ngModel)]="this.persona.fechaNacimiento" name="fechaNacimiento" matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" (click)="picker.open()">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>      
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+                <button (click)="this.actualizar(idPersona)" type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+</div>
  

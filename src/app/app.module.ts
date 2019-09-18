@@ -10,12 +10,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppComponent } from './app.component';
 
-import { SidebarModule } from './sidebar/sidebar.module';
-import { FooterModule } from './shared/footer/footer.module';
-import { NavbarModule} from './shared/navbar/navbar.module';
-import { FixedpluginModule} from './shared/fixedplugin/fixedplugin.module';
-import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
-import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { SidebarModule } from './modules-plantilla/sidebar/sidebar.module';
+import { AdminLayoutComponent } from './modules-plantilla/layouts/admin/admin-layout.component';
+import { FooterModule } from './modules-plantilla/shared/footer/footer.module';
+import { NavbarModule} from './modules-plantilla/shared/navbar/navbar.module';
+import { FixedpluginModule} from './modules-plantilla/shared/fixedplugin/fixedplugin.module';
+import { AuthLayoutComponent } from './modules-plantilla/layouts/auth/auth-layout.component';
+
 
 import { AppRoutes } from './app.routing';
 import { CategoriasModule } from './modules/categorias/categorias.module';

@@ -1,23 +1,23 @@
-import * as core from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FactoryService } from 'src/app/services/factory.service';
 
-@core.Component({
-  selector: 'app-empleado',
-  templateUrl: './empleado.component.html',
-  styleUrls: ['./empleado.component.css']
+@Component({
+  selector: 'app-cliente',
+  templateUrl: './cliente.component.html',
+  styleUrls: ['./cliente.component.css']
 })
-export class EmpleadoComponent implements core.OnInit {
-  @core.Input() titulo: string;
-  @core.Input() query: any;
-  @core.Input() tablaTitulos: [];
-  @core.Input() tablaElementos: [];
+export class ClienteComponent implements OnInit {
+  @Input() titulo: string;
+  @Input() query: any;
+  @Input() tablaTitulos: [];
+  @Input() tablaElementos: any;
   public clientes = [];
   public modeloMostrar = [];
   public paginacion = 1;
   public tamanoPaginacion = [];
   public busqueda: string = '';
   public like: boolean = false;
-  @core.Output () increment: core.EventEmitter <Object> = new core.EventEmitter (); 
+  @Output () increment: EventEmitter <Object> = new EventEmitter (); 
   constructor(private _factory: FactoryService) { }
 
   ngOnInit() {
@@ -45,9 +45,17 @@ export class EmpleadoComponent implements core.OnInit {
   }
   buscar(evt) {
     console.log(evt);
+    const tablaElementos = this.tablaElementos[1];
+    if(this.query.model === 'persona') {
     this.query.query = {
-      "idEmpleado":{"nombre": evt.trim()}
+      'nombre' : evt.trim()
+    }
+    }
+    if(this.query.model === 'categoria') {
+    this.query.query = {
+      'descripcion' : evt.trim()
     };
+    }
     this.like = true;
     if(evt.trim() === ''){
       this.query.query =  null;
