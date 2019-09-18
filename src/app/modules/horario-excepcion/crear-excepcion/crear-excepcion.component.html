@@ -11,18 +11,24 @@
     <div class="card-body ">
       <form method="get" action="/" class="form-horizontal">
         <div class="row">
-          <label class="col-sm-2 col-form-label">Nombre</label>
-          <div class="col-sm-10">
+          <div class="col-sm-4">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Nombre">
+              <input [(ngModel)]="horarioExcepcion.idEmpleado.nombre" name="idEmpleado.nombre" matInput type="text" placeholder="Empleado"
+                disabled="true">
             </mat-form-field>
+
+          </div>
+          <div class="col-sm-2">
+            <button mat-raised-button class="btn btn-info" class="btn btn-primary"
+              data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
           </div>
         </div>
         <div class="row">
           <label class="col-sm-2 col-form-label">Horario de inicio</label>
           <div class="col-sm-10">
             <mat-form-field class="example-full-width">
-              <input [(ngModel)]="horarioExcepcion.horaAperturaCadena" name="horaAperturaCadena" matInput placeholder="Formato hhmm">
+              <input [(ngModel)]="horarioExcepcion.horaAperturaCadena" name="horaAperturaCadena" matInput
+                placeholder="Formato hhmm">
             </mat-form-field>
           </div>
         </div>
@@ -30,7 +36,8 @@
           <label class="col-sm-2 col-form-label">Horario de finalizacion</label>
           <div class="col-sm-10">
             <mat-form-field class="example-full-width">
-              <input [(ngModel)]="horarioExcepcion.horaCierreCadena" name="horaCierreCadena" matInput placeholder="Formato hhmm">
+              <input [(ngModel)]="horarioExcepcion.horaCierreCadena" name="horaCierreCadena" matInput
+                placeholder="Formato hhmm">
             </mat-form-field>
           </div>
         </div>
@@ -38,7 +45,8 @@
           <label class="col-sm-2 col-form-label">Fecha</label>
           <div class="col-sm-10">
             <mat-form-field>
-              <input [(ngModel)]="horarioExcepcion.fechaCadenaF" name="fechaFiltro" matInput [matDatepicker]="picker" placeholder="Eliga una fecha" (click)="picker.open()">
+              <input [(ngModel)]="horarioExcepcion.fechaCadenaF" name="fechaFiltro" matInput [matDatepicker]="picker"
+                placeholder="Eliga una fecha" (click)="picker.open()">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -48,7 +56,8 @@
           <label class="col-sm-2 col-form-label"></label>
           <div class="form-check col-sm-10">
             <label class="form-check-label">
-              <input (click)="check('S')" class="form-check-input" type="radio" name="exampleRadios" value="S" checked> Atendera
+              <input (click)="check('S')" class="form-check-input" type="radio" name="exampleRadios" value="S" checked>
+              Atendera
               <span class="circle">
                 <span class="check"></span>
               </span>
@@ -59,7 +68,8 @@
           <label class="col-sm-2 col-form-label"></label>
           <div class="form-check col-sm-10">
             <label class="form-check-label">
-              <input (click)="check('N')" [(ngModel)]="name" class="form-check-input" type="radio" name="exampleRadios" value="N"> No atendera
+              <input (click)="check('N')" [(ngModel)]="name" class="form-check-input" type="radio" name="exampleRadios"
+                value="N"> No atendera
               <span class="circle">
                 <span class="check"></span>
               </span>
@@ -67,9 +77,13 @@
           </div>
         </div>
         <div class="card-footer ">
-            <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
+          <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<app-empleado [titulo]="elementosLista2.titulo" [query]="elementosLista2.query"
+  [tablaTitulos]="elementosLista2.tablaTitulos" [tablaElementos]="elementosLista2.tablaElementos"
+  (increment)="selecionCliente($event)"></app-empleado>
