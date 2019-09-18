@@ -41,6 +41,16 @@
                     </form>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <mat-form-field class="example-full-width">
+                      <input [(ngModel)]="busqueda" name="busqueda" matInput type="text" (ngModelChange)="buscar($event)"
+                        placeholder="Nombre del cliente a buscar">
+                    </mat-form-field>
+                  </div>
+              </div>
+        
+
               <div class="table-responsive">
                 <table class="table">
                         <thead>
