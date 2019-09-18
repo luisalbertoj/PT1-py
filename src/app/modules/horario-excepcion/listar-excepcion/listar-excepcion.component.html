@@ -53,6 +53,7 @@
                   <th class="text-center">Horario Cierre</th>
                   <th class="text-center">Fecha</th>
                   <th class="text-center">Empleado</th>
+                  <th class="text-center">Observacion</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,6 +62,8 @@
                   <td class="text-center">{{horario.horaCierreCadena}}</td>
                   <td class="text-center">{{horario.fechaCadena}}</td>
                   <td class="text-center">{{horario.idEmpleado.nombre}}</td>
+                  <td *ngIf="horario.flagEsHabilitar == 'S'" class="text-center">Atenderá</td>
+                  <td *ngIf="horario.flagEsHabilitar == 'N'" class="text-center">No atenderá</td>
                 </tr>
               </tbody>
               <nav aria-label="Page navigation example">
