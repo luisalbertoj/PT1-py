@@ -3,6 +3,7 @@ import { Paciente } from 'src/app/models/paciente';
 import { FactoryService } from 'src/app/services/factory.service';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-actualizar-pacientes',
@@ -13,37 +14,24 @@ export class ActualizarPacientesComponent {
   public pacientes = [];
   public pacientestamanio = [];
   public paginacion = 1;
-  public persona = new Paciente();
+  public persona: any = new Paciente();
   public idPersona: string;
-  constructor(private _factory: FactoryService, private router: ActivatedRoute) {
+  constructor(private _factory: FactoryService, private router: ActivatedRoute,
+    private _util: UtilService) {
   this.idPersona = router.snapshot.paramMap.get('id');
   this._factory.get('persona/'+this.idPersona).subscribe(
     (response: any) => {
       console.log('elemento filtrado');
-      this.persona.nombre= response.nombre;
-      this.persona.apellido= response.apellido;
-      this.persona.telefono= response.telefono;
-      this.persona.email= response.email;
-      this.persona.ruc= response.ruc;
-      this.persona.cedula= response.cedula;
-      this.persona.tipoPersona= response.tipoPersona;
-      this.persona.fechaNacimiento= response.fechaNacimiento;
+      this.persona = response;
+      this.persona.fechaNacimiento = new Date(this.persona.fechaNacimiento);
       }
   );
   console.log(this.idPersona);
   }
-  actualizar(id){
-    /*let data= {
-      idPersona: this.idPersona,
-      nombre:$('#'+id).val(),
-      apellido:$('#'+id).val(),
-      telefono:$('#'+id).val(),
-      email:$('#'+id).val(),
-      ruc:$('#'+id).val(),
-      cedula:$('#'+id).val(),
-      tipoPersona:$('#'+id).val(),
-      fechaNacimiento:$('#'+id).val() 
-    };*/
+  actualizar(id?: any){
+    const fechaAntigua = this.persona.fechaNacimiento;
+    this.persona.fechaNacimiento = this._util.formatoFecha(this.persona.fechaNacimiento) + ' 00:00:00';
+    console.log(this.persona.fechaNacimiento);
     this._factory.update('persona', this.persona).subscribe(
       (response:any) => {
         swal(
@@ -54,5 +42,6 @@ export class ActualizarPacientesComponent {
         console.log(response);
       }
     );
+    this.persona.fechaNacimiento = fechaAntigua;
   }
 }
