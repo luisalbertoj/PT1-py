@@ -47,6 +47,7 @@ export class RegistroPacienteComponent  {
           'Peticion exitosa',
           'success'
         );
+        this.cargar(this.paginacion);
       },
       (error: any) => {
         console.log(error);
