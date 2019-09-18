@@ -33,9 +33,15 @@ export class ListadoComponent implements OnInit {
   public fichas = [];
   public paginacion = 1;
   public tamanoPaginacion = [];
+  public categorias: any = [];
+  public subCategorias: any = [];
+  public seleccionCategoria: boolean = true;
+  public subCategoiraSeleccionada: any = {};
+  public categoiraSeleccionada: any = {};
   constructor(private _factory: FactoryService, public _util: UtilService) { }
   ngOnInit() {
     this.cargar(this.paginacion);
+    this.cargarCategorias();
   }
   cargar(pagina: number) {
     this.paginacion = pagina;
@@ -52,12 +58,37 @@ export class ListadoComponent implements OnInit {
       }
     );
   }
+  cargarCategorias() {
+    this._factory.get('categoria').subscribe(
+      (response: any) => {
+        console.log(response);
+        this.categorias = response.lista;
+      }
+    );
+  }
+  subCategoriaSeleccionada(item: any) {
+    this.subCategoiraSeleccionada = item;
+  }
+  categoriaSeleccionada(item: any) {
+    this.categoiraSeleccionada = item;
+    this.seleccionCategoria = false;
+    const queryA = {idCategoria: {idCategoria: item.idCategoria}};
+    console.log(queryA);
+    this._factory.get('tipoProducto', null, null, null, null, queryA).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.subCategorias = response.lista;
+      }
+    );
+  }
   consultar() {
     let query: any = {};
     if(this.filtro.fechaHasta !== '') query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
     if(this.filtro.fechaDesde !== '') query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
     if(this.filtro.idCliente !== '') query.idCliente = this.filtro.idCliente;
     if(this.filtro.idEmpleado !== '') query.idEmpleado = this.filtro.idEmpleado;
+    console.log(this.subCategoiraSeleccionada);
+    if(this.subCategoiraSeleccionada !== {}) query.idTipoProducto = {idTipoProducto: this.subCategoiraSeleccionada.idTipoProducto};
     if(query === {}) query = null;
     console.log(query);
     this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10, query).subscribe(

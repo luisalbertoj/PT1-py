@@ -41,10 +41,6 @@ export const AppRoutes: Routes = [
     {
         path: 'horario-excepcion',
         loadChildren: './modules/horario-excepcion/horario-excepcion.module#HorarioExcepcionModule'
-    },
-    {
-        path: '*',
-        loadChildren: './modules/categorias/categorias.module#CategoriasModule'
     }
   ]}, {
       path: '',

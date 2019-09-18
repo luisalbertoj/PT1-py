@@ -40,7 +40,6 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'reorder',
         collapse: 'fichas',
         children: [
-            {path: 'tabla', title: 'Tabla', ab:'T'},
             {path: 'listado', title: 'Listado', ab:'L'}
         ]
     },{
