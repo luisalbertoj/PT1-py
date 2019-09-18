@@ -88,6 +88,15 @@ export const ROUTES: RouteInfo[] = [{
         children: [
             {path: 'registro-pacientes', title: 'Registro de pacientes', ab:'RP'}
         ]
+    },{
+        path: '/reservas',
+        title: 'Reservas',
+        type: 'sub',
+        icontype: 'dns',
+        collapse: 'reservas',
+        children: [
+            {path: 'listar-reservas', title: 'Listado de reservas', ab:'LR'}
+        ]
     }
 ];
 @Component({
