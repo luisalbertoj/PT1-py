@@ -77,14 +77,9 @@ export class RegistroCategoriaComponent  {
       }
     );
   }
-  actualizar(id) {
-    console.log($('#'+id).val() );
-    let data= {
-      idCategoria: id,
-      descripcion:$('#'+id).val() 
-    };
-    console.log(data);
-    this._factory.update('categoria', data).subscribe(
+  actualizar(id, modelo) {
+    modelo.descripcion = $('#'+id).val();
+    this._factory.update('categoria', modelo).subscribe(
       (response:any) => {
         swal(
           'Ok!',

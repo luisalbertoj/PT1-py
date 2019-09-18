@@ -9,6 +9,10 @@ export const CategoriaRoutes: Routes = [
         children: [ {
             path: 'registro-categorias',
             component:  RegistroCategoriaComponent
+        },{
+            path: '',
+            redirectTo: 'registro-categorias',
+            pathMatch: 'full',
         }]
     }
 ];
