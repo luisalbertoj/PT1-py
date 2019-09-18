@@ -7,29 +7,79 @@
       <h4 class="card-title ">Excepciones de horario</h4>
     </div>
     <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field>
+              <input [(ngModel)]="filtro.fechaDesde" name="fechaDesde" matInput [matDatepicker]="fechaDesde"
+                placeholder="Fecha desde" (click)="fechaDesde.open()">
+              <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+              <mat-datepicker #fechaDesde></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field class="example-full-width">
+              <input [(ngModel)]="filtro.empleado" name="filtro.empleado" matInput type="text" placeholder="Empleado"
+                disabled="true">
+            </mat-form-field>
 
+          </div>
+          <div class="col-sm-2">
+            <button (click)="buscarEmpleado()" mat-raised-button class="btn btn-info" class="btn btn-primary"
+              data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <button mat-raised-button class="btn btn-info" (click)="consultar()">Filtrar</button>
+            <button mat-raised-button class="btn btn-info" (click)="limpiar()">Limpiar</button>
+          </div>
+          <div class="col-sm-8">
 
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="text-primary">
-            <tr>
-              <th>Horario apertura </th>
-              <th>Horario Cierre</th>
-              <th>Fecha</th>
-              <th>Empleado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let horario of lista_excepciones">
-              <td>{{horario.horaAperturaCadena}}</td>
-              <td>{{horario.horaCierreCadena}}</td>
-              <td>{{horario.fechaCadena}}</td>
-              <td>{{horario.idEmpleado.nombre}}</td>
-            </tr>
-          </tbody>
-        </table>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Lista de excepciones</h2>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <tr>
+                  <th class="text-center">Horario apertura </th>
+                  <th class="text-center">Horario Cierre</th>
+                  <th class="text-center">Fecha</th>
+                  <th class="text-center">Empleado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let horario of lista_excepciones">
+                  <td class="text-center">{{horario.horaAperturaCadena}}</td>
+                  <td class="text-center">{{horario.horaCierreCadena}}</td>
+                  <td class="text-center">{{horario.fechaCadena}}</td>
+                  <td class="text-center">{{horario.idEmpleado.nombre}}</td>
+                </tr>
+              </tbody>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <div *ngFor="let item of tamanoPaginacion">
+                    <li id="paginacion" class="page-item"><a class="page-link"
+                        (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
+                  </div>
+                </ul>
+              </nav>
+            </table>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-empleado [titulo]="elementosLista2.titulo" [query]="elementosLista2.query"
+  [tablaTitulos]="elementosLista2.tablaTitulos" [tablaElementos]="elementosLista2.tablaElementos"
+  (increment)="selecionCliente($event)"></app-empleado>
