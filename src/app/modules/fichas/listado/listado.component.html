@@ -39,8 +39,8 @@
 
               </div>
               <div class="col-sm-2">
-                <button (click)="buscarEmpleado()" mat-raised-button class="btn btn-info" 
-                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
+                <button  mat-raised-button class="btn btn-info" class="btn btn-primary"
+                  data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
               </div>
               <div class="col-sm-4">
 
@@ -52,8 +52,8 @@
 
               </div>
               <div class="col-sm-2">
-                <button (click)="buscarCliente()" mat-raised-button class="btn btn-info"
-                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
+                <button  mat-raised-button class="btn btn-info" class="btn btn-primary"
+                  data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
               </div>
             </div>
             <div class="row">
@@ -67,26 +67,26 @@
                   <ul class="dropdown-menu" style="height: 200px; overflow-y: scroll !important">
                     <li *ngFor="let item of this.categorias">
                       <a style="cursor: pointer" (click)="categoriaSeleccionada(item)">
-                      {{item.descripcion}}
-                    </a>
-                  </li>
+                        {{item.descripcion}}
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="dropdown">
-                  <button *ngIf="!this.seleccionCategoria" href="#" class="btn dropdown-toggle btn-block btn-danger" data-toggle="dropdown"
-                    aria-expanded="true">
+                  <button *ngIf="!this.seleccionCategoria" href="#" class="btn dropdown-toggle btn-block btn-danger"
+                    data-toggle="dropdown" aria-expanded="true">
                     Subcategoria
                     <b class="caret"></b>
                   </button>
                   <ul class="dropdown-menu" style="height: 200px; overflow-y: scroll !important">
-                      <li *ngFor="let item of this.subCategorias">
-                        <a style="cursor: pointer" (click)="subCategoriaSeleccionada(item)">
+                    <li *ngFor="let item of this.subCategorias">
+                      <a style="cursor: pointer" (click)="subCategoriaSeleccionada(item)">
                         {{item.nombre || 'nombre no registrado'}} / {{item.descripcion || 'descripcion no registrado'}}
                       </a>
                     </li>
-                    </ul>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -102,7 +102,6 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <h2>Servicios creados apartir de esta ficha</h2>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -119,12 +118,20 @@
                       <td class="text-center">{{ficha.idEmpleado.nombre}}</td>
                       <td class="text-center">{{ficha.idCliente.nombre}}</td>
                       <td class="text-center">{{ficha.fechaHora}}</td>
-                      <td class="text-center">{{ficha.observacion}}</td>
+                      <td class="text-center">
+
+                        <div class="col-sm-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput type="text" placeholder="descripcion" value="{{ficha.observacion}}"
+                              id="{{ficha.idFichaClinica}}">
+                          </mat-form-field>
+                        </div>
+                      </td>
                       <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-success ">
+                        <button (click)="update(ficha)" type="button" rel="tooltip" class="btn btn-success ">
                           <i class="material-icons">edit</i>
                         </button>
-                        <button type="button" rel="tooltip" class="btn btn-danger">
+                        <button (click)="eliminar(ficha.idFichaClinica)" type="button" rel="tooltip" class="btn btn-danger">
                           <i class="material-icons">close</i>
                         </button>
                       </td>
@@ -142,20 +149,19 @@
               </div>
             </div>
           </div>
+          <a [routerLink]="[ '/fichas/agregar-ficha' ]">
+            <button mat-raised-button class="btn btn-primary btn-round aling-right">
+              <i class="material-icons">favorite</i> Agregar ficha
+            </button>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-cliente 
-[titulo]="elementosLista.titulo"
-[query]="elementosLista.query"
-[tablaTitulos]="elementosLista.tablaTitulos"
-[tablaElementos]="elementosLista.tablaElementos"
-(increment)="selecionCliente($event)"></app-cliente>
-<app-empleado
-[titulo]="elementosLista2.titulo"
-[query]="elementosLista2.query"
-[tablaTitulos]="elementosLista2.tablaTitulos"
-[tablaElementos]="elementosLista2.tablaElementos"
-(increment)="selecionCliente($event)"></app-empleado>
+<app-cliente [titulo]="elementosLista.titulo" [query]="elementosLista.query"
+  [tablaTitulos]="elementosLista.tablaTitulos" [tablaElementos]="elementosLista.tablaElementos"
+  (increment)="selecionCliente($event)"></app-cliente>
+<app-empleado [titulo]="elementosLista2.titulo" [query]="elementosLista2.query"
+  [tablaTitulos]="elementosLista2.tablaTitulos" [tablaElementos]="elementosLista2.tablaElementos"
+  (increment)="selecionCliente($event)"></app-empleado>
