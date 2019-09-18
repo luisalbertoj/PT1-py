@@ -7,9 +7,10 @@ import { ListadoComponent } from './listado/listado.component';
 import { FormsModule } from '@angular/forms';
 import { ClienteComponent } from './cliente/cliente.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
+import { AgregarComponent } from './agregar/agregar.component';
 
 @NgModule({
-  declarations: [ ListadoComponent, ClienteComponent, EmpleadoComponent],
+  declarations: [ ListadoComponent, ClienteComponent, EmpleadoComponent, AgregarComponent],
   imports: [
     CommonModule,
     MaterialModule,

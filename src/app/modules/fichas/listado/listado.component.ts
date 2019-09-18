@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FactoryService } from 'src/app/services/factory.service';
 import { UtilService } from 'src/app/services/util.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado',
@@ -127,15 +128,37 @@ export class ListadoComponent implements OnInit {
       this.filtro.idEmpleado = cliente.idEmpleado.idPersona;
     }
   }
-  buscarCliente() {
-    this.elementosLista = {
-      titulo : 'Clientes',
-      query: {model: 'persona', orderBy: 'idPersona', orderDir: 'asc', query: null},
-      tablaTitulos: ['Id', 'Nombre', 'Cedula'],
-      tablaElementos: ['idPersona', 'nombre', 'cedula']
+  update(modelo) {
+    modelo.observacion = $('#'+modelo.idFichaClinica).val();
+    const data = {
+      idFichaClinica: modelo.idFichaClinica,
+      observacion: modelo.observacion
     };
+    console.log(data);
+    this._factory.update('fichaClinica', data).subscribe(
+      (response:any) => {
+        swal(
+          'Ok!',
+          'Actualizacion exitosa',
+          'success'
+        );
+        console.log(response);
+      }
+    );
   }
-  buscarEmpleado() {
-    
+  eliminar(id){
+    this._factory.delete('fichaClinica',id).subscribe(
+      (response: any) => {
+        swal(
+          'Ok!',
+          'Eliminación exitosa',
+          'success'
+        );
+        this.cargar(this.paginacion);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 }
