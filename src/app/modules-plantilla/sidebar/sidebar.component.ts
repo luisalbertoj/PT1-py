@@ -95,7 +95,7 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'dns',
         collapse: 'reservas',
         children: [
-            {path: 'listar-reservas', title: 'Listado de reservas', ab:'LR'}
+            {path: 'listar-reserva', title: 'Listado de reservas', ab:'LR'}
         ]
     }
 ];

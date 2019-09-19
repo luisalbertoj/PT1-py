@@ -11,8 +11,8 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class ListarReservaComponent  {
   public filtro = {
-    fechaDesde: '',
-    fechaHasta: '',
+    fechaDesde: new Date(),
+    fechaHasta: new Date(),
     fechaDesdeCadena: '',
     fechaHastaCadena: '',
     empleado: '',
@@ -27,24 +27,27 @@ export class ListarReservaComponent  {
     tablaElementos: ['idPersona', 'nombre', 'cedula']
   };
   public elementosLista2 = {
-    titulo : 'Fisioterapeutas',
+    titulo : 'Profesionales',
     query: {model: 'fichaClinica', orderBy: 'idFichaClinica', orderDir: 'asc', query: null},
     tablaTitulos: ['Id', 'Nombre', 'Cedula'],
     tablaElementos: ['idPersona', 'nombre', 'cedula']
   };
-  public fichas = [];
+  public reservas = [];
   public paginacion = 1;
   public tamanoPaginacion = [];
-  constructor(private _factory: FactoryService, public _util: UtilService) { }
+  public fichas = [];
+  constructor(private _factory: FactoryService, public _util: UtilService) { 
+    this.consultar();
+  }
   ngOnInit() {
-    this.cargar(this.paginacion);
+    
   }
   cargar(pagina: number) {
     this.paginacion = pagina;
-    this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10).subscribe(
+    this._factory.get('reserva', 'idReserva', 'asc', this.paginacion, 10).subscribe(
       (response: any) => {
         console.log(response);
-        this.fichas =  response.lista;
+        this.reservas =  response.lista;
         for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
           this.tamanoPaginacion[index] = index*10;
         }
@@ -56,16 +59,16 @@ export class ListarReservaComponent  {
   }
   consultar() {
     let query: any = {};
-    if(this.filtro.fechaHasta !== '') query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
-    if(this.filtro.fechaDesde !== '') query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
-    if(this.filtro.idCliente !== '') query.idCliente = this.filtro.idCliente;
-    if(this.filtro.idEmpleado !== '') query.idEmpleado = this.filtro.idEmpleado;
+    query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
+    query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
+    if(this.filtro.idCliente !== '') query.idCliente = { idPersona: this.filtro.idCliente };
+    if(this.filtro.idEmpleado !== '') query.idEmpleado = { idPersona: this.filtro.idEmpleado};
     if(query === {}) query = null;
     console.log(query);
-    this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10, query).subscribe(
+    this._factory.get('reserva', 'idReserva', 'asc', this.paginacion, 10, query).subscribe(
       (response: any) => {
         console.log(response);
-        this.fichas =  response.lista;
+        this.reservas =  response.lista;
         for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
           this.tamanoPaginacion[index] = index*10;
         }
@@ -78,8 +81,8 @@ export class ListarReservaComponent  {
   }
   limpiar() {
     this.filtro = {
-      fechaDesde: '',
-    fechaHasta: '',
+    fechaDesde: new Date(),
+    fechaHasta: new Date(),
     fechaDesdeCadena: '',
     fechaHastaCadena: '',
     empleado: '',
@@ -98,15 +101,20 @@ export class ListarReservaComponent  {
       this.filtro.idEmpleado = cliente.idEmpleado.idPersona;
     }
   }
-  buscarCliente() {
-    this.elementosLista = {
-      titulo : 'Clientes',
-      query: {model: 'persona', orderBy: 'idPersona', orderDir: 'asc', query: null},
-      tablaTitulos: ['Id', 'Nombre', 'Cedula'],
-      tablaElementos: ['idPersona', 'nombre', 'cedula']
-    };
-  }
-  buscarEmpleado() {
-    
+ 
+  eliminar(id){
+    this._factory.delete('reserva', id).subscribe(
+      (response: any) => {
+        swal(
+          'Ok!',
+          'Eliminación exitosa',
+          'success'
+        );
+        this.cargar(this.paginacion);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 }

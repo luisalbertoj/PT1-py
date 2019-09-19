@@ -1,3 +1,132 @@
-<p>
-  listar-reserva works!
-</p>
+<div id="main-container" class="main-container">
+  <div class="container-flex">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Reservas <i class="far fa-address-book"></i></h4>
+          </div>
+        </div>
+        <div class="card-body ">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input [(ngModel)]="filtro.fechaDesde" name="fechaDesde" matInput [matDatepicker]="fechaDesde"
+                    placeholder="Fecha desde" (click)="fechaDesde.open()">
+                  <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaDesde></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input [(ngModel)]="filtro.fechaHasta" name="fechaHasta" matInput [matDatepicker]="fechaHasta"
+                    placeholder="Fecha hasta" (click)="fechaHasta.open()">
+                  <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+                  <mat-datepicker #fechaHasta></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+
+                <mat-form-field class="example-full-width">
+                  <input [(ngModel)]="filtro.empleado" name="filtro.empleado" matInput type="text"
+                    placeholder="Empleado" disabled="true">
+                </mat-form-field>
+
+
+              </div>
+              <div class="col-sm-2">
+                <button (click)="buscarEmpleado()" mat-raised-button class="btn btn-info" 
+                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
+              </div>
+              <div class="col-sm-4">
+
+                <mat-form-field class="example-full-width">
+                  <input [(ngModel)]="filtro.cliente" name="filtro.cliente" disabled="true" matInput type="text"
+                    placeholder="Cliente">
+                </mat-form-field>
+
+
+              </div>
+              <div class="col-sm-2">
+                <button (click)="buscarCliente()" mat-raised-button class="btn btn-info"
+                class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
+
+              </div>
+              <div class="col-sm-4">
+                <button mat-raised-button class="btn btn-info" (click)="consultar()">Filtrar</button>
+                <button mat-raised-button class="btn btn-info" (click)="limpiar()">Limpiar</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Reservas de este Profesional</h2>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Fecha</th>
+                      <th class="text-center">Hora de Inicio</th>
+                      <th class="text-center">Hora de fin</th>
+                      <th class="text-center">Profesional</th>
+                      <th class="text-center">Cliente</th>
+                      <th class="text-center">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let reserva of reservas">
+                      <td class="text-center">{{reserva.fecha}}</td>
+                      <td class="text-center">{{reserva.horaInicio}}</td>
+                      <td class="text-center">{{reserva.horaFin}}</td>
+                      <td class="text-center">{{reserva.idEmpleado.nombre}}</td>
+                      <td class="text-center">{{reserva.idCliente.nombre}}</td>
+                      <td>
+                          <button mat-raised-button class="btn btn-danger"
+                            (click)="reserva.eliminar(idReserva)">Cancelar</button>
+                          <button mat-raised-button class="btn btn-info"
+                            (click)="reserva.actualizar()">Actualizar</button>
+                        </td>
+                    </tr>
+                  </tbody>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <div *ngFor="let item of tamanoPaginacion">
+                        <li id="paginacion" class="page-item"><a class="page-link"
+                            (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
+                      </div>
+                    </ul>
+                  </nav>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+              <a [routerLink]="['/reservas/registro-reservas']">
+                <button mat-raised-button class="btn btn-info"
+                >Agregar reserva</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-cliente 
+[titulo]="elementosLista.titulo"
+[query]="elementosLista.query"
+[tablaTitulos]="elementosLista.tablaTitulos"
+[tablaElementos]="elementosLista.tablaElementos"
+(increment)="selecionCliente($event)"></app-cliente>
+<app-empleado
+[titulo]="elementosLista2.titulo"
+[query]="elementosLista2.query"
+[tablaTitulos]="elementosLista2.tablaTitulos"
+[tablaElementos]="elementosLista2.tablaElementos"
+(increment)="selecionCliente($event)"></app-empleado>

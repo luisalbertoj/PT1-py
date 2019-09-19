@@ -37,6 +37,9 @@ export const AppRoutes: Routes = [
     ,{
         path: 'pacientes',
         loadChildren: './modules/pacientes/pacientes.module#PacientesModule'
+    },{
+        path: 'reservas',
+        loadChildren: './modules/reservas/reservas.module#ReservasModule'
     },
     {
         path: 'horario-excepcion',
