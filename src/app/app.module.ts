@@ -24,6 +24,7 @@ import { SubcategoriaModule } from './modules/subcategoria/subcategoria.module';
 import { ServiciosModule } from './modules/servicios/servicios.module';
 import { MaterialModule } from './material.module';
 import { PacientesModule } from './modules/pacientes/pacientes.module';
+import { ReservasModule } from './modules/reservas/reservas.module';
 
 
 
@@ -44,6 +45,7 @@ import { PacientesModule } from './modules/pacientes/pacientes.module';
         CategoriasModule,
         SubcategoriaModule,
         PacientesModule,
+        ReservasModule,
         ServiciosModule
     ],
     declarations: [
