@@ -72,15 +72,62 @@
 
                 </div>
               </div>
-
+              <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Día</th>
+                      <th scope="col">Apertura de Horario</th>
+                      <th scope="col">Cierre de Horario</th>
+                      <th scope="col">Duración de Consulta</th>
+                      <th scope="col">Nombre de Doctor</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.categorias">
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.dia}}" id="{{item.idPersonaHorarioAgenda + 'm'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.horaAperturaCadena}}"
+                            id="{{item.idPersonaHorarioAgenda + 'n'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.horaCierreCadena}}" id="{{item.idPersonaHorarioAgenda + 'o'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.intervaloMinutos}}" id="{{item.idPersonaHorarioAgenda + 'p'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">{{item.idEmpleado.nombre}}</th>
+                      <td>
+                        <button mat-raised-button class="btn btn-danger"
+                          (click)="this.eliminar(item.idPersonaHorarioAgenda)">Eliminar</button>
+                        <button mat-raised-button class="btn btn-info"
+                          (click)="this.actualizar(item.idPersonaHorarioAgenda, item)">Actualizar</button>
+                      </td>
+            
+                    </tr>
+            
+                  </tbody>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <div *ngFor="let item of categoriastamanio">
+                        <li style="cursor: pointer" class="page-item"><a class="page-link"
+                            (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
+                      </div>
+                    </ul>
+                  </nav>
+                </table>
             </div>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <div *ngFor="let item of categoriastamanio">
-                  <li class="page-item"><a class="page-link" (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
-                </div>
-              </ul>
-            </nav>
+
           </div>
         </div>
       </div>

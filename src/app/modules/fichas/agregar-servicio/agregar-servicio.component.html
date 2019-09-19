@@ -1,3 +1,145 @@
-<p>
-  agregar-servicio works!
-</p>
+<div id="main-container" class="main-container">
+    <div class="container-flex">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header card-header-rose card-header-text">
+            <div class="card-text">
+              <h4 class="card-title">Agregar Servicio <i class="far fa-address-book"></i></h4>
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input [(ngModel)]="name" matInput [matDatepicker]="picker" placeholder="Fecha" (click)="picker.open()">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  
+                </div>
+                <div class="col-sm-4">
+  
+                    <mat-form-field class="example-full-width">
+                        <textarea [(ngModel)]="servicio.observacion" matInput placeholder="Observaciones"></textarea>
+                      </mat-form-field>
+    
+    
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+  
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="empleado.nombre" name="filtro.empleado" matInput type="text"
+                      placeholder="Empleado" disabled="true">
+                  </mat-form-field>
+  
+  
+                </div>
+                <div class="col-sm-2">
+                  <button mat-raised-button class="btn btn-info" 
+                  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
+                </div>
+                <div class="col-sm-4">
+  
+                  <mat-form-field class="example-full-width">
+                    <input [(ngModel)]="cliente.nombre" name="cliente" disabled="true" matInput type="text"
+                      placeholder="Cliente">
+                  </mat-form-field>
+  
+  
+                </div>
+                <div class="col-sm-2">
+                  <button  mat-raised-button class="btn btn-info"
+                  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">id Ficha</th>
+                        <th>Fecha categoria</th>
+                        <th>Sub categoria</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- <td class="text-center" *ngFor="let item of categoria">
+                          {{}}
+                        </td> -->
+                        <td class="td-actions text-right">
+                            <div class="form-check form-check-radio">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                    Radio is off
+                                    <span class="circle">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                              </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              <div class="row">
+                <div class="col-sm-8"></div>
+                <div class="col-sm-4">
+                  <button (click)="createficha()" mat-raised-button class="btn btn-primary btn-round">
+                    <i class="material-icons">favorite</i> Guardar
+                    </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h2>Servicios creados apartir de esta ficha</h2>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="text-center">Fecha</th>
+                          <th>Presupuesto</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="text-center">sss</td>
+                          <td class="text-right">&euro; 123</td>
+                          <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-info">
+                              <i class="material-icons">person</i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success ">
+                              <i class="material-icons">edit</i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger">
+                              <i class="material-icons">close</i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-cliente 
+  [titulo]="elementosLista.titulo"
+  [query]="elementosLista.query"
+  [tablaTitulos]="elementosLista.tablaTitulos"
+  [tablaElementos]="elementosLista.tablaElementos"
+  (increment)="selecionCliente($event)"></app-cliente>
+  <app-empleado
+  [titulo]="elementosLista2.titulo"
+  [query]="elementosLista2.query"
+  [tablaTitulos]="elementosLista2.tablaTitulos"
+  [tablaElementos]="elementosLista2.tablaElementos"
+  (increment)="selecionCliente($event)"></app-empleado>

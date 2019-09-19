@@ -20,14 +20,14 @@ export class ListaServicioComponent implements OnInit {
     idEmpleado: ''
   };
   public elementosLista = {
-    titulo : '',
-    query: {model: 'persona', orderBy: 'idPersona', orderDir: 'asc', query: null},
+    titulo: '',
+    query: { model: 'persona', orderBy: 'idPersona', orderDir: 'asc', query: null },
     tablaTitulos: ['Id', 'Nombre', 'Cedula'],
     tablaElementos: ['idPersona', 'nombre', 'cedula']
   };
   public elementosLista2 = {
-    titulo : 'Fisioterapeutas',
-    query: {model: 'fichaClinica', orderBy: 'idFichaClinica', orderDir: 'asc', query: null},
+    titulo: 'Fisioterapeutas',
+    query: { model: 'fichaClinica', orderBy: 'idFichaClinica', orderDir: 'asc', query: null },
     tablaTitulos: ['Id', 'Nombre', 'Cedula'],
     tablaElementos: ['idPersona', 'nombre', 'cedula']
   };
@@ -37,7 +37,7 @@ export class ListaServicioComponent implements OnInit {
   public categorias: any = [];
   public subCategorias: any = [];
   public seleccionCategoria: boolean = true;
-  public subCategoiraSeleccionada: string  = '';
+  public subCategoiraSeleccionada: string = '';
   public categoiraSeleccionada: any = {};
   constructor(private _factory: FactoryService, public _util: UtilService) { }
   ngOnInit() {
@@ -50,9 +50,9 @@ export class ListaServicioComponent implements OnInit {
       (response: any) => {
         console.log('Lista Servicios');
         console.log(response);
-        this.fichas =  response.lista;
-        for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
-          this.tamanoPaginacion[index] = index*10;
+        this.fichas = response.lista;
+        for (let index = 0; index < Math.trunc(response.totalDatos / 10) + 1; index++) {
+          this.tamanoPaginacion[index] = index * 10;
         }
       },
       (error: any) => {
@@ -74,7 +74,7 @@ export class ListaServicioComponent implements OnInit {
   categoriaSeleccionada(item: any) {
     this.categoiraSeleccionada = item;
     this.seleccionCategoria = false;
-    const queryA = {idCategoria: {idCategoria: item.idCategoria}};
+    const queryA = { idCategoria: { idCategoria: item.idCategoria } };
     console.log(queryA);
     this._factory.get('tipoProducto', null, null, null, null, queryA).subscribe(
       (response: any) => {
@@ -85,19 +85,19 @@ export class ListaServicioComponent implements OnInit {
   }
   consultar() {
     let query: any = {};
-    if(this.filtro.fechaHasta !== '') query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
-    if(this.filtro.fechaDesde !== '') query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
-    if(this.filtro.idCliente !== '') query.idFichaClinica.idCliente.idPersona = this.filtro.idCliente;
-    if(this.filtro.idEmpleado !== '') query.idEmpleado = this.filtro.idEmpleado;
-    if(this.subCategoiraSeleccionada !== '') query.idTipoProducto = {idTipoProducto: this.subCategoiraSeleccionada};
-    if(query === {}) query = null;
+    if (this.filtro.fechaHasta !== '') query.fechaHastaCadena = this._util.limpiarFecha(new Date(this.filtro.fechaHasta));
+    if (this.filtro.fechaDesde !== '') query.fechaDesdeCadena = this._util.limpiarFecha(new Date(this.filtro.fechaDesde));
+    if (this.filtro.idCliente !== '') query.idFichaClinica.idCliente.idPersona = this.filtro.idCliente;
+    if (this.filtro.idEmpleado !== '') query.idEmpleado = this.filtro.idEmpleado;
+    if (this.subCategoiraSeleccionada !== '') query.idTipoProducto = { idTipoProducto: this.subCategoiraSeleccionada };
+    if (query === {}) query = null;
     console.log(query);
     this._factory.get('servicio', 'idServicio', 'asc', this.paginacion, 10, query).subscribe(
       (response: any) => {
         console.log(response);
-        this.fichas =  response.lista;
-        for (let index = 0; index < Math.trunc(response.totalDatos/10)+1; index++) {
-          this.tamanoPaginacion[index] = index*10;
+        this.fichas = response.lista;
+        for (let index = 0; index < Math.trunc(response.totalDatos / 10) + 1; index++) {
+          this.tamanoPaginacion[index] = index * 10;
         }
       },
       (error: any) => {
@@ -109,18 +109,18 @@ export class ListaServicioComponent implements OnInit {
   limpiar() {
     this.filtro = {
       fechaDesde: '',
-    fechaHasta: '',
-    fechaDesdeCadena: '',
-    fechaHastaCadena: '',
-    empleado: '',
-    cliente: '',
-    idCliente: '',
-    idEmpleado: ''
+      fechaHasta: '',
+      fechaDesdeCadena: '',
+      fechaHastaCadena: '',
+      empleado: '',
+      cliente: '',
+      idCliente: '',
+      idEmpleado: ''
     };
   }
-  selecionCliente (cliente: any) { 
+  selecionCliente(cliente: any) {
     console.log(cliente);
-    if(cliente.model === 'persona') {
+    if (cliente.model === 'persona') {
       this.filtro.cliente = cliente.nombre;
       this.filtro.idCliente = cliente.idPersona;
     } else {
@@ -129,14 +129,14 @@ export class ListaServicioComponent implements OnInit {
     }
   }
   update(modelo) {
-    modelo.observacion = $('#'+modelo.idFichaClinica).val();
+    modelo.observacion = $('#' + modelo.idFichaClinica).val();
     const data = {
       idFichaClinica: modelo.idFichaClinica,
       observacion: modelo.observacion
     };
     console.log(data);
     this._factory.update('fichaClinica', data).subscribe(
-      (response:any) => {
+      (response: any) => {
         swal(
           'Ok!',
           'Actualizacion exitosa',
@@ -146,8 +146,8 @@ export class ListaServicioComponent implements OnInit {
       }
     );
   }
-  eliminar(id){
-    this._factory.delete('fichaClinica',id).subscribe(
+  eliminar(id) {
+    this._factory.delete('fichaClinica', id).subscribe(
       (response: any) => {
         swal(
           'Ok!',
