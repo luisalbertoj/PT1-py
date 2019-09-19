@@ -1,131 +1,129 @@
-  <div id="main-container" class="main-container">
-      <div class="container-flex">
-        <div class="col-md-12">
-          <div class="card ">
-            <div class="card-header card-header-rose card-header-text">
-              <div class="card-text">
-                <h4 class="card-title">Agenda <i class="far fa-address-book"></i></h4>
-              </div>
-            </div>
-            <div class="card-body ">
-              <div class="container-fluid">
-                <div class="container">
-                  <div class="row">
-                    <div id="form" class="col-sm-12">
-          
-                      <form>
-                        <div class="form-group">
-                          <input type="text" [(ngModel)]="agenda.dia" name="dia" class="form-control"
-                            id="nombre" aria-describedby="nombre" placeholder="Día de Atención">
-                        </div>
-                        
-                        <div class="form-group">  
-                          <input type="text" [(ngModel)]="agenda.horaAperturaCadena" name="horaAperturaCadena" class="form-control"
-                            id="descripcion" aria-describedby="descripcion" placeholder="Apertura de horario de atención">
-                        </div>
-
-                        <div class="form-group">  
-                            <input type="text" [(ngModel)]="agenda.horaCierreCadena" name="horaCierreCadena" class="form-control"
-                              id="descripcion" aria-describedby="descripcion" placeholder="Cierre de horario de atención">
-                          </div>
-                       
-                        <div class="form-group">   
-                          <input type="number" [(ngModel)]="agenda.intervaloMinutos" name="intervaloMinutos" class="form-control"
-                            id="descripcion" aria-describedby="descripcion" placeholder="Duración de la consulta (minutos)">
-                        </div>
-
-                        <div class="form-group">
-                          <div class="row">
-                              
-                              <div class="col-sm-4">
-                                  <mat-form-field class="example-full-width">
-                                    <input [(ngModel)]="empleado.nombre" name="filtro.empleado" matInput type="text"
-                                      placeholder="Empleado" disabled="true">
-                                  </mat-form-field>
-                                </div>
-                    
-                                <div class="col-sm-2">
-                                  <button  mat-raised-button class="btn btn-info" 
-                                  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
-                                </div>
-
-                                
-                            
-                            
-                          </div>  
-                          </div>
-                        <button (click)= "guardar()" type="submit" class="btn btn-primary">Guardar</button>
-                      </form>
-      
-                    </div>
-                  </div>
-                  
-                </div>
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <div *ngFor="let item of categoriastamanio">
-                      <li class="page-item"><a class="page-link" (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
-                    </div>
-                  </ul>
-                </nav>
-              </div>
-            </div>
+<div id="main-container" class="main-container">
+  <div class="container-flex">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header card-header-rose card-header-text">
+          <div class="card-text">
+            <h4 class="card-title">Agenda <i class="far fa-address-book"></i></h4>
           </div>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Día</th>
-                <th scope="col">Apertura de Horario</th>
-                <th scope="col">Cierre de Horario</th>
-                <th scope="col">Duración de Consulta</th>
-                <th scope="col">Nombre de Doctor</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of this.categorias">
-                <th scope="row">
-                    <mat-form-field class="example-full-width">
-                        <input matInput type="text" value="{{item.dia}}"
-                          id="{{item.idPersonaHorarioAgenda + 'm'}}">
-                      </mat-form-field>
-                </th>
-                <th scope="row">
-                    <mat-form-field class="example-full-width">
-                        <input matInput type="text" value="{{item.horaAperturaCadena}}"
-                          id="{{item.idPersonaHorarioAgenda + 'n'}}">
-                      </mat-form-field>
-                </th>
-                <th scope="row">
-                    <mat-form-field class="example-full-width">
-                        <input matInput type="text" value="{{item.horaCierreCadena}}"
-                          id="{{item.idPersonaHorarioAgenda + 'o'}}">
-                      </mat-form-field>
-                </th>
-                <th scope="row">
-                    <mat-form-field class="example-full-width">
-                        <input matInput type="text" value="{{item.intervaloMinutos}}"
-                          id="{{item.idPersonaHorarioAgenda + 'p'}}">
-                      </mat-form-field>
-                </th>
-                <th scope="row">{{item.idEmpleado.nombre}}</th>
-                <td>
-                  <button mat-raised-button class="btn btn-danger"
-                    (click)="this.eliminar(item.idPersonaHorarioAgenda)">Eliminar</button>
-                  <button mat-raised-button class="btn btn-info"
-                    (click)="this.actualizar(item.idPersonaHorarioAgenda, item)">Actualizar</button>
-                </td>
+        <div class="card-body ">
+          <div class="container-fluid">
+            <div class="container">
+              <div class="row">
+                <div id="form" class="col-sm-12">
 
-              </tr>
+                  <form>
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="agenda.dia" name="dia" class="form-control" id="nombre"
+                        aria-describedby="nombre" placeholder="Día de Atención">
+                    </div>
 
-            </tbody>
-          </table>
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="agenda.horaAperturaCadena" name="horaAperturaCadena"
+                        class="form-control" id="descripcion" aria-describedby="descripcion"
+                        placeholder="Apertura de horario de atención">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="agenda.horaCierreCadena" name="horaCierreCadena"
+                        class="form-control" id="descripcion" aria-describedby="descripcion"
+                        placeholder="Cierre de horario de atención">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="number" [(ngModel)]="agenda.intervaloMinutos" name="intervaloMinutos"
+                        class="form-control" id="descripcion" aria-describedby="descripcion"
+                        placeholder="Duración de la consulta (minutos)">
+                    </div>
+
+                    <div class="form-group">
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <mat-form-field class="example-full-width">
+                            <input [(ngModel)]="empleado.nombre" name="filtro.empleado" matInput type="text"
+                              placeholder="Empleado" disabled="true">
+                          </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <button mat-raised-button class="btn btn-info" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter2">Buscar</button>
+                        </div>
+
+
+
+
+                      </div>
+                    </div>
+                    <button (click)="guardar()" type="submit" class="btn btn-primary">Guardar</button>
+                  </form>
+
+                </div>
+              </div>
+              <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Día</th>
+                      <th scope="col">Apertura de Horario</th>
+                      <th scope="col">Cierre de Horario</th>
+                      <th scope="col">Duración de Consulta</th>
+                      <th scope="col">Nombre de Doctor</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.categorias">
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.dia}}" id="{{item.idPersonaHorarioAgenda + 'm'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.horaAperturaCadena}}"
+                            id="{{item.idPersonaHorarioAgenda + 'n'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.horaCierreCadena}}" id="{{item.idPersonaHorarioAgenda + 'o'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">
+                        <mat-form-field class="example-full-width">
+                          <input matInput type="text" value="{{item.intervaloMinutos}}" id="{{item.idPersonaHorarioAgenda + 'p'}}">
+                        </mat-form-field>
+                      </th>
+                      <th scope="row">{{item.idEmpleado.nombre}}</th>
+                      <td>
+                        <button mat-raised-button class="btn btn-danger"
+                          (click)="this.eliminar(item.idPersonaHorarioAgenda)">Eliminar</button>
+                        <button mat-raised-button class="btn btn-info"
+                          (click)="this.actualizar(item.idPersonaHorarioAgenda, item)">Actualizar</button>
+                      </td>
+            
+                    </tr>
+            
+                  </tbody>
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <div *ngFor="let item of categoriastamanio">
+                        <li style="cursor: pointer" class="page-item"><a class="page-link"
+                            (click)="cargar(item + 1)">{{(item/10) + 1 || 1}}</a></li>
+                      </div>
+                    </ul>
+                  </nav>
+                </table>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <app-empleado
-[titulo]="elementosLista2.titulo"
-[query]="elementosLista2.query"
-[tablaTitulos]="elementosLista2.tablaTitulos"
-[tablaElementos]="elementosLista2.tablaElementos"
-(increment)="selecionCliente($event)"></app-empleado>
-      
+    </div>
+    
+  </div>
+  <app-empleado [titulo]="elementosLista2.titulo" [query]="elementosLista2.query"
+    [tablaTitulos]="elementosLista2.tablaTitulos" [tablaElementos]="elementosLista2.tablaElementos"
+    (increment)="selecionCliente($event)"></app-empleado>
