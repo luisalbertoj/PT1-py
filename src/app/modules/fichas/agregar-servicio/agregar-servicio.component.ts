@@ -44,11 +44,12 @@ export class AgregarServicioComponent implements OnInit {
   constructor(private _factory: FactoryService) { }
 
   ngOnInit() {
+    this.cargar(this.paginacion);
     this.cargarCategorias();
   }
   cargar(pagina: number) {
     this.paginacion = pagina;
-    this._factory.get('servicio', 'idServicio', 'asc', this.paginacion, 10).subscribe(
+    this._factory.get('fichaClinica', 'idFichaClinica', 'asc', this.paginacion, 10).subscribe(
       (response: any) => {
         console.log('Lista Servicios');
         console.log(response);
