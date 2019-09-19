@@ -15,6 +15,9 @@ export class AgregarServicioComponent implements OnInit {
   public cliente: any = {
     nombre: ''
   };
+  public fichas = [];
+  public paginacion = 1;
+  public tamanoPaginacion = [];
   public categorias = [];
   public subCategorias = [];
   public seleccionCategoria: boolean = true;
@@ -33,11 +36,31 @@ export class AgregarServicioComponent implements OnInit {
     tablaTitulos: ['Id', 'Nombre', 'Cedula'],
     tablaElementos: ['idPersona', 'nombre', 'cedula']
   };
+  public servicio: any = {
+    observacion: ''
+  };
+  
 
   constructor(private _factory: FactoryService) { }
 
   ngOnInit() {
     this.cargarCategorias();
+  }
+  cargar(pagina: number) {
+    this.paginacion = pagina;
+    this._factory.get('servicio', 'idServicio', 'asc', this.paginacion, 10).subscribe(
+      (response: any) => {
+        console.log('Lista Servicios');
+        console.log(response);
+        this.fichas = response.lista;
+        for (let index = 0; index < Math.trunc(response.totalDatos / 10) + 1; index++) {
+          this.tamanoPaginacion[index] = index * 10;
+        }
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
   cargarCategorias() {
     this._factory.get('categoria').subscribe(
