@@ -5,3 +5,6 @@ a {
 #paginacion {
     cursor: pointer;
 }
+#main-container {
+    margin-top: 100px;
+}

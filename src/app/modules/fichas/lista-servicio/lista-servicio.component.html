@@ -4,7 +4,7 @@
       <div class="card ">
         <div class="card-header card-header-rose card-header-text">
           <div class="card-text">
-            <h4 class="card-title">Filtros de busqueda <i class="far fa-address-book"></i></h4>
+            <h4 class="card-title">Filtros de busqueda Servicios<i class="far fa-address-book"></i></h4>
           </div>
         </div>
         <div class="card-body ">
@@ -39,8 +39,8 @@
 
               </div>
               <div class="col-sm-2">
-                <button  mat-raised-button class="btn btn-info" class="btn btn-primary"
-                  data-toggle="modal" data-target="#exampleModalCenter2">Buscar</button>
+                <button mat-raised-button class="btn btn-info" class="btn btn-primary" data-toggle="modal"
+                  data-target="#exampleModalCenter2">Buscar</button>
               </div>
               <div class="col-sm-4">
 
@@ -52,8 +52,8 @@
 
               </div>
               <div class="col-sm-2">
-                <button  mat-raised-button class="btn btn-info" class="btn btn-primary"
-                  data-toggle="modal" data-target="#exampleModalCenter">Buscar</button>
+                <button mat-raised-button class="btn btn-info" class="btn btn-primary" data-toggle="modal"
+                  data-target="#exampleModalCenter">Buscar</button>
               </div>
             </div>
             <div class="row">
@@ -106,32 +106,40 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="text-center">Fisioterapeuta</th>
-                      <th class="text-center">Paciente</th>
                       <th class="text-center">Fecha</th>
-                      <th class="text-center">Observacion</th>
+                      <th class="text-center">Id ficha</th>
+                      <th class="text-center">Fecha ficha</th>
+                      <th class="text-center">Profesional</th>
+                      <th class="text-center">Cliente</th>
+                      <th class="text-center">Categoria</th>
+                      <th class="text-center">SubCategoria</th>
                       <th class="text-center">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let ficha of fichas">
-                      <td class="text-center">{{ficha.idEmpleado.nombre}}</td>
-                      <td class="text-center">{{ficha.idCliente.nombre}}</td>
-                      <td class="text-center">{{ficha.fechaHora}}</td>
-                      <td class="text-center">
-
-                        <div class="col-sm-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput type="text" placeholder="descripcion" value="{{ficha.observacion}}"
-                              id="{{ficha.idFichaClinica}}">
-                          </mat-form-field>
-                        </div>
-                      </td>
+                    <tr *ngFor="let item of fichas">
+                      <td class="text-center">{{item.fechaHora}}</td>
+                      <td class="text-center">{{item.idFichaClinica.idFichaClinica}}</td>
+                      <td class="text-center">{{item.idFichaClinica.fechaHora}}</td>
+                      <td class="text-center">{{item.idEmpleado.nombre}}</td>
+                      <td class="text-center">{{item.idFichaClinica.idCliente.nombre}}</td>
+                      <td class="text-center">{{item.idFichaClinica.idTipoProducto.idCategoria.descripcion}}</td>
+                      <td class="text-center">{{item.idFichaClinica.idTipoProducto.descripcion}}</td>
+                       <!-- <td class="text-center">
+  
+                          <div class="col-sm-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput type="text" placeholder="descripcion" value="{{ficha.observacion}}"
+                                id="{{ficha.idFichaClinica}}">
+                            </mat-form-field>
+                          </div>
+                        </td> -->
                       <td class="td-actions text-right">
-                        <button (click)="update(ficha)" type="button" rel="tooltip" class="btn btn-success ">
+                        <button (click)="update(item)" type="button" rel="tooltip" class="btn btn-success ">
                           <i class="material-icons">edit</i>
                         </button>
-                        <button (click)="eliminar(ficha.idFichaClinica)" type="button" rel="tooltip" class="btn btn-danger">
+                        <button (click)="eliminar(item.idServicio)" type="button" rel="tooltip"
+                          class="btn btn-danger">
                           <i class="material-icons">close</i>
                         </button>
                       </td>
@@ -149,9 +157,9 @@
               </div>
             </div>
           </div>
-          <a [routerLink]="[ '/fichas/agregar-ficha' ]">
+          <a [routerLink]="[ '/fichas/agregar-servicio' ]">
             <button mat-raised-button class="btn btn-primary btn-round aling-right">
-              <i class="material-icons">favorite</i> Agregar ficha
+              <i class="material-icons">favorite</i> Agregar Servicio
             </button>
           </a>
         </div>

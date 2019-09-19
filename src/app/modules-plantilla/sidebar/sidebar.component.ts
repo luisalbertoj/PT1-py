@@ -40,7 +40,9 @@ export const ROUTES: RouteInfo[] = [{
         icontype: 'reorder',
         collapse: 'fichas',
         children: [
-            {path: 'listado', title: 'Listado', ab:'L'}
+            {path: 'listado', title: 'Listado', ab:'L'},
+            {path: 'agregar-ficha', title: 'Agregar ficha', ab:'AF'},
+            {path: 'listado-servicios', title: 'Listado Servicios', ab:'LS'},
         ]
     },{
         path: '/sub-categorias',
